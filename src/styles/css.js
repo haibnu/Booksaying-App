@@ -1,5 +1,6 @@
 import {
-	StyleSheet
+	//Platform,
+	StyleSheet,
 } from 'react-native';
 
 module.exports = StyleSheet.create({
@@ -25,5 +26,28 @@ module.exports = StyleSheet.create({
 		color:'white',
 		fontSize:15,
 		fontWeight:'600',
-	}
+	},
+
+	headerTitle: {
+		fontSize: 12,
+		fontWeight: 'bold',
+		color: '#4a4a4a'
+	},
+
+	upperSmallText: {
+		fontSize:11,
+		fontWeight:'bold',
+		color: '#50D688',
+	},
+
+	bigText: {
+		fontSize:26,
+		lineHeight:31,
+		fontWeight:'300',
+	},
+
+	// contentWrap: {
+	// 	paddingVertical: 24,
+	// 	paddingHorizontal: 40,
+	// }
 });
