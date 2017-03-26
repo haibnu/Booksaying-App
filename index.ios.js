@@ -1,7 +1,7 @@
 /**
  * Booksaying App with React Native
  * https://github.com/facebook/react-native
- * @flow
+ * Author by @haibnu, @gomod0r
  */
 import React, { Component } from 'react';
 
@@ -19,7 +19,9 @@ import Register from './src/components/register';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
+
 		var routeId = route.id;
+
 		if(routeId === 'Login'){
 			return <Login navigator={navigator}/>;
 		}
@@ -29,14 +31,14 @@ export default class bookSaying extends Component {
 		if(routeId === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
 		}
+
 	}
 
 	render() {
 		return(
 			<Navigator
 					initialRoute={{
-						id: 'Welcome',
-						name: 'Welcome'
+						id: 'Welcome'
 					}}
 					renderScene={
 						this.renderScene.bind(this)
@@ -47,22 +49,7 @@ export default class bookSaying extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-	 flex: 1,
-	 justifyContent: 'center',
-	 alignItems: 'center',
-	 backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-	 fontSize: 20,
-	 textAlign: 'center',
-	 margin: 10,
-  },
-  instructions: {
-	 textAlign: 'center',
-	 color: '#333333',
-	 marginBottom: 5,
-  },
+	// styles
 });
 
 AppRegistry.registerComponent('bookSaying', () => bookSaying);

@@ -7,10 +7,20 @@ import {
 	Image
 } from 'react-native';
 
-import {Container} from 'native-base';
+import {
+	Container,
+	Header,
+	Left,
+	Right,
+	Button,
+	Icon,
+	Body,
+	Title,
+} from 'native-base';
+
 import Login from '../login';
 
-const style = require('../../styles/main');
+const style = require('../../styles/css');
 
 export default class Welcome extends Component{
 	constructor(props){
@@ -42,41 +52,44 @@ export default class Welcome extends Component{
 	}
 	render(){
 		return(
-			<Image source={require('../../img/bg.png')} style={{flex: 1, resizeMode: 'cover'}}>
-				<Container style={{ paddingVertical:70, paddingHorizontal:45, flex:1, alignItems: 'center' }}>
-					<Image source={require('../../img/logo.png')} />
-					<Text style={{ fontSize:11, fontWeight:'bold', color: '#50D688', width:295, marginTop:125 }}>ARAMIZA HOŞGELDİN</Text>
-					<Text style={{ fontSize:26, lineHeight:31, fontWeight:'300', width:295, marginTop: 20 }}>Sevdiğin Sözler     Havuzu</Text>
-					<View style={{ alignItems:'stretch', borderWidth:2, borderColor:'#50D688', borderRadius:3, flexDirection:'row', marginTop:50 }}>
-						<TouchableHighlight
-							style={style.welcomeButton}
-							underlayColor='#50D688'
-							onHideUnderlay={this._onHideUnderlay.bind(this)}
-							onShowUnderlay={this._onShowUnderlay.bind(this)}
-							onPress={() => {
-								this.props.navigator.push({
-									id: 'Login',
-									name: 'Login'
-								});
-							}}>
-							<Text style={ this.state.pressStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Giriş Yap</Text>
-						</TouchableHighlight>
-						<TouchableHighlight
-							underlayColor='#50D688'
-							onHideUnderlay={this._onHideUnderlay2.bind(this)}
-							onShowUnderlay={this._onShowUnderlay2.bind(this)}
-							onPress={() => {
-								this.props.navigator.push({
-									id: 'Login',
-									name: 'Login'
-								});
-							}}
-							style={[style.welcomeButton,{borderLeftWidth:2, borderLeftColor:'#50D688'}]}>
-							<Text style={ this.state.signupStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Kayıt Ol</Text>
-						</TouchableHighlight>
+			<Container>
+				<Image source={require('../../img/bg.png')} style={{flex: 1, resizeMode: 'cover'}}>
+					<View style={{ paddingVertical:70, paddingHorizontal:45, alignItems: 'center' }}>
+						<Image source={require('../../img/logo.png')} />
+						<Text style={{ fontSize:11, fontWeight:'bold', color: '#50D688', width:295, marginTop:125 }}>ARAMIZA HOŞGELDİN</Text>
+						<Text style={{ fontSize:26, lineHeight:31, fontWeight:'300', width:295, marginTop: 20 }}>Sevdiğin Sözler</Text>
+						<Text style={{ fontSize:26, lineHeight:31, fontWeight:'300', width:295 }}>Havuzu</Text>
+						<View style={{ alignItems:'stretch', borderWidth:2, borderColor:'#50D688', borderRadius:3, flexDirection:'row', marginTop:50 }}>
+							<TouchableHighlight
+								style={style.welcomeButton}
+								underlayColor='#50D688'
+								onHideUnderlay={this._onHideUnderlay.bind(this)}
+								onShowUnderlay={this._onShowUnderlay.bind(this)}
+								onPress={() => {
+									this.props.navigator.push({
+										id: 'Login',
+										name: 'Login'
+									});
+								}}>
+								<Text style={ this.state.pressStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Giriş Yap</Text>
+							</TouchableHighlight>
+							<TouchableHighlight
+								underlayColor='#50D688'
+								onHideUnderlay={this._onHideUnderlay2.bind(this)}
+								onShowUnderlay={this._onShowUnderlay2.bind(this)}
+								onPress={() => {
+									this.props.navigator.push({
+										id: 'Login',
+										name: 'Login'
+									});
+								}}
+								style={[style.welcomeButton,{borderLeftWidth:2, borderLeftColor:'#50D688'}]}>
+								<Text style={ this.state.signupStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Kayıt Ol</Text>
+							</TouchableHighlight>
+						</View>
 					</View>
-				</Container>
-			</Image>
+				</Image>
+			</Container>
 		);
 	}
 }
