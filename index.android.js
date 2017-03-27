@@ -4,17 +4,22 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  StatusBar
 } from 'react-native';
 import Welcome from './src/components/Welcome/Welcome';
 import Login from './src/components/login';
 import Register from './src/components/register';
+import Discovery from './src/components/discovery';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
 		var routeId = route.id;
 		if(routeId === 'Login'){
 			return <Login navigator={navigator}/>;
+		}
+        if(routeId === 'Discovery'){
+			return <Discovery navigator={navigator}/>;
 		}
 		if(routeId === 'Register'){
 			return <Register navigator={navigator}/>;
@@ -25,10 +30,10 @@ export default class bookSaying extends Component {
 	}
 	render() {
 		return(
-			<Navigator
+            <Navigator
             	initialRoute={{
-          			id: 'Welcome',
-					name: 'Welcome'
+          			id: 'Discovery',
+					name: 'Discovery'
             	}}
             	renderScene={
               		this.renderScene.bind(this)
