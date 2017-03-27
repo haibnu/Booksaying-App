@@ -20,7 +20,9 @@ import {
 
 import Login from '../login';
 
-const style = require('../../styles/css');
+import {Button as CButton} from '../button';
+
+import {css} from '../../styles/css';
 
 export default class Welcome extends Component{
 	constructor(props){
@@ -30,26 +32,7 @@ export default class Welcome extends Component{
 			signupStatus: false
 		};
 	}
-	_onHideUnderlay(){
-		this.setState({
-			pressStatus: false
-		});
-	}
-	_onHideUnderlay2(){
-		this.setState({
-			signupStatus: false
-		});
-	}
-	_onShowUnderlay(){
-		this.setState({
-			pressStatus: true
-		});
-	}
-	_onShowUnderlay2(){
-		this.setState({
-			signupStatus: true
-		});
-	}
+
 	render(){
 		return(
 			<Container>
@@ -60,32 +43,28 @@ export default class Welcome extends Component{
 						<Text style={{ fontSize:26, lineHeight:31, fontWeight:'300', width:295, marginTop: 20 }}>Sevdiğin Sözler</Text>
 						<Text style={{ fontSize:26, lineHeight:31, fontWeight:'300', width:295 }}>Havuzu</Text>
 						<View style={{ alignItems:'stretch', borderWidth:2, borderColor:'#50D688', borderRadius:3, flexDirection:'row', marginTop:50 }}>
-							<TouchableHighlight
-								style={style.welcomeButton}
-								underlayColor='#50D688'
-								onHideUnderlay={this._onHideUnderlay.bind(this)}
-								onShowUnderlay={this._onShowUnderlay.bind(this)}
+							<CButton
+								backgroundColor='#50D688'
+								textColor='white'
+								style={css.welcomeButton}
+								text="Giriş Yap"
 								onPress={() => {
 									this.props.navigator.push({
-										id: 'Login',
-										name: 'Login'
-									});
-								}}>
-								<Text style={ this.state.pressStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Giriş Yap</Text>
-							</TouchableHighlight>
-							<TouchableHighlight
-								underlayColor='#50D688'
-								onHideUnderlay={this._onHideUnderlay2.bind(this)}
-								onShowUnderlay={this._onShowUnderlay2.bind(this)}
-								onPress={() => {
-									this.props.navigator.push({
-										id: 'Login',
-										name: 'Login'
+										id: 'Login'
 									});
 								}}
-								style={[style.welcomeButton,{borderLeftWidth:2, borderLeftColor:'#50D688'}]}>
-								<Text style={ this.state.signupStatus ? { color:'white', fontSize:15, fontWeight:'600' } : { color:'#50D688', fontSize:15, fontWeight:'600' } }>Kayıt Ol</Text>
-							</TouchableHighlight>
+							/>
+							<CButton
+								backgroundColor='#50D688'
+								textColor='white'
+								style={[css.welcomeButton, {borderLeftWidth: 2, borderColor: '#50D688'} ]}
+								text="Kayıt Ol"
+								onPress={() => {
+									this.props.navigator.push({
+										id: 'Register'
+									});
+								}}
+							/>
 						</View>
 					</View>
 				</Image>

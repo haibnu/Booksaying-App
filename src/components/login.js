@@ -25,8 +25,7 @@ import {
 	Col, Row, Grid,
 } from 'native-base';
 
-//var css = require('../styles/css');
-import css from '../styles/css';
+import {css} from '../styles/css';
 
 export default class Login extends Component {
 	constructor(props){
@@ -35,15 +34,13 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<Container style={{ backgroundColor: 'white' }}>
+			<View style={css.containerWrap}>
 				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
 				  <Left>
 						<Button
 							transparent
 							onPress={() => {
-								this.props.navigator.push({
-									id: 'Welcome'
-								});
+								this.props.navigator.pop();
 							}}>
 							<Icon name='arrow-back' style={{color: '#50D688'}} />
 						</Button>
@@ -53,7 +50,7 @@ export default class Login extends Component {
 					</Body>
 					<Right></Right>
 				</Header>
-				<Content style={{ paddingVertical: 24, paddingHorizontal: 40 }}>
+				<View style={css.contentWrap }>
 
 					<Text style={[css.upperSmallText, { marginBottom: 8 }]}>HEY, ORADAKİ 👋</Text>
 					<Text style={css.bigText}>Tekrar</Text>
@@ -95,8 +92,8 @@ export default class Login extends Component {
 						<Text style={{ color:'#4A4A4A', fontSize:13, fontWeight: '600', marginLeft: 5 }}>Kayıt Ol</Text>
 					</Button>
 
-				</Content>
-			</Container>
+				</View>
+			</View>
 		)
 	}
 }

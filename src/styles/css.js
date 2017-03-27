@@ -3,9 +3,14 @@ import {
 	StyleSheet,
 } from 'react-native';
 
-module.exports = StyleSheet.create({
+export const css = StyleSheet.create({
 	buttonGroup:{
 		flexDirection:'row'
+	},
+
+	containerWrap: {
+		backgroundColor: 'white',
+		flex: 1
 	},
 
 	welcomeButton:{
@@ -19,7 +24,7 @@ module.exports = StyleSheet.create({
 	welcomeText: {
 		color:'#50D688',
 		fontSize:15,
-		fontWeight:'600',
+		fontWeight:'600'
 	},
 
 	welcomeTextTouched: {
@@ -38,16 +43,18 @@ module.exports = StyleSheet.create({
 		fontSize:11,
 		fontWeight:'bold',
 		color: '#50D688',
+		backgroundColor: 'transparent'
 	},
 
 	bigText: {
 		fontSize:26,
 		lineHeight:31,
 		fontWeight:'300',
+		backgroundColor: 'transparent'
 	},
 
-	// contentWrap: {
-	// 	paddingVertical: 24,
-	// 	paddingHorizontal: 40,
-	// }
+	contentWrap: {
+		paddingVertical: 24,
+		paddingHorizontal: 40,
+	}
 });
