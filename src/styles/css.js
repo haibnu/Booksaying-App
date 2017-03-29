@@ -58,7 +58,7 @@ export const css = StyleSheet.create({
 		paddingHorizontal: 40,
 	},
 	footerTabIcon:{
-		fontSize:24,
+		fontSize:26,
 		color:'#9B9B9B'
 	},
 	footerTabText:{

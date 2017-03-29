@@ -11,6 +11,7 @@ import Welcome from './src/components/Welcome/Welcome';
 import Login from './src/components/login';
 import Register from './src/components/register';
 import Discovery from './src/components/discovery';
+import MyFeed from './src/components/myfeed';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
@@ -26,6 +27,9 @@ export default class bookSaying extends Component {
 		}
 		if(routeId === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
+		}
+        if(routeId === 'MyFeed'){
+			return <MyFeed navigator={navigator}/>;
 		}
 	}
 	render() {

@@ -32,6 +32,9 @@ import {
 import {css} from '../styles/css';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Tabbar from './tabbar'
 
 export default class discovery extends Component{
 	constructor(props) {
@@ -51,15 +54,16 @@ export default class discovery extends Component{
 	render(){
 		return(
 			<View style={css.containerWrap}>
-				<StatusBar
-					backgroundColor="#50D688"
-					barStyle="light-content"
-				/>
 
-				<View style={{ height:64,backgroundColor:'#50D688', borderBottomColor:'transparent' }}>
-					<View style={{ flex:1, justifyContent:'center' }}>
-						<Image style={{ alignSelf:'center', width:41, height:28, resizeMode:'contain' }} source={require('../img/logo-navbar@2x.png')} />
-					</View>
+				<View>
+					<Header noShadow style={{ backgroundColor:'#50D688' }}>
+						<StatusBar
+							backgroundColor='#50D688'
+						/>
+						<Body>
+							<Image style={{ alignSelf:'center', width:41, height:28, resizeMode:'contain' }} source={require('../img/logo-navbar@2x.png')} />
+						</Body>
+					</Header>
 				</View>
 
 				<View style={{ height:190, backgroundColor:'#50D688' }}>
@@ -84,10 +88,10 @@ export default class discovery extends Component{
 										</Body>
 									</Left>
 									<TouchableHighlight>
-										<Icon name="bookmark" style={{ fontSize:18 }}/>
+										<MaterialCommunityIcons name="bookmark-plus-outline" style={{ fontSize:18 }}/>
 									</TouchableHighlight>
 									<TouchableHighlight>
-										<Icon name="bookmark" style={{ fontSize:18 }}/>
+										<MaterialCommunityIcons name="dots-vertical" style={{ fontSize:18 }}/>
 									</TouchableHighlight>
 								</CardItem>
 								<CardItem content>
@@ -100,30 +104,8 @@ export default class discovery extends Component{
 
 				</Content>
 
-				<Footer>
-					<FooterTab style={{ backgroundColor:'#FFFFFF' }}>
-						<Button>
-							<Icon name="bookmark-border" style={css.footerTabIcon}/>
-							<Text style={css.footerTabText}>Sözlerim</Text>
-						</Button>
-						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
-							<Text style={css.footerTabText}>Keşfet</Text>
-						</Button>
-						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
-							<Text style={css.footerTabText}>Ekle</Text>
-						</Button>
-						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
-							<Text style={css.footerTabText}>Hesabım</Text>
-						</Button>
-						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
-							<Text style={css.footerTabText}>Diğer</Text>
-						</Button>
-					</FooterTab>
-				</Footer>
+				<Tabbar navigator={this.props.navigator} />
+
 			</View>
 		);
 
