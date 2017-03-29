@@ -15,16 +15,16 @@ import Discovery from './src/components/discovery';
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
 		var routeId = route.id;
-		if(routeId === 'Login'){
+		if(route.name === 'Login'){
 			return <Login navigator={navigator}/>;
 		}
-        if(routeId === 'Discovery'){
-			return <Discovery navigator={navigator}/>;
+        if(route.name === 'Discovery'){
+			return <Discovery navigator={navigator} {...route.passProps}/>;
 		}
-		if(routeId === 'Register'){
+		if(route.name === 'Register'){
 			return <Register navigator={navigator}/>;
 		}
-		if(routeId === 'Welcome'){
+		if(route.name === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
 		}
 	}
@@ -32,8 +32,7 @@ export default class bookSaying extends Component {
 		return(
             <Navigator
             	initialRoute={{
-          			id: 'Discovery',
-					name: 'Discovery'
+					name: 'Login'
             	}}
             	renderScene={
               		this.renderScene.bind(this)

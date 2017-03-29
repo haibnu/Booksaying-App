@@ -38,6 +38,7 @@ export default class discovery extends Component{
 	    super(props);
 	    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 	    this.state = {
+			accessToken: this.props.accessToken,
 	      	dataSource: ds.cloneWithRows([
 	        	{
 					name: 'Hakan Şahin',

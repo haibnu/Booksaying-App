@@ -1,125 +1,150 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
 import {
-	TouchableHighlight,
-	Text,
 	View,
-	StatusBar,
-	Image,
+	Text,
+	TextInput,
+	TouchableHighlight,
 	StyleSheet,
-} from 'react-native';
+	AsyncStorage
+}from 'react-native';
 
-import {
-	Container,
-	Content,
-	Button,
-	Left,
-	Right,
-	Body,
-	Header,
-	Icon,
-	Title,
-	Form,
-	Item,
-	Input,
-	Label,
-	Col, Row, Grid,
-} from 'native-base';
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 
-import {css} from '../styles/css';
+export default class Register extends Component{
+	constructor(){
+		super();
 
-export default class Login extends Component {
-	constructor(props){
-		super(props);
+		this.state = {
+			name: "",
+			email: "",
+			password: "",
+			password_confirmation: "",
+			errors: [],
+		}
 	}
 
-	render() {
-		return (
-			<View style={css.containerWrap}>
-				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
-				  <Left>
-						<Button
-							transparent
-							onPress={() => {
-								this.props.navigator.pop({
-									id: 'Welcome'
-								});
-							}}>
-							<Icon name='arrow-back' style={{color: '#50D688'}} />
-						</Button>
-					</Left>
-					<Body>
-						<Title style={{ fontSize: 12, fontWeight: 'bold', color: '#4a4a4a' }}>ARAMIZA KATIL</Title>
-					</Body>
-					<Right></Right>
-				</Header>
-				<Content style={{ paddingVertical: 24, paddingHorizontal: 40 }}>
+	redirect(routeName, token){
+		this.props.navigator.push({
+			name: routeName,
+			passProps: {
+				accessToken: this.props.accessToken
+			}
+		})
+	}
 
-					<Text style={[css.upperSmallText, { marginBottom: 8 }]}>HEY, ORADAKİ 👋</Text>
-					<Text style={css.bigText}>Neden biz biraz anlatsana?</Text>
+	async onRegisterPressed(){
+		try{
+			let response = await fetch('https://afternoon-beyond-22141.herokuapp.com/api/users',{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					user: {
+						name: this.state.name,
+						email: this.state.email,
+						password: this.state.password,
+						password_confirmation: this.state.password_confirmation
+					}
+				})
+			});
+			let res = await response.text();
 
-					<Form>
+			if(response.status >= 200 && response.status < 300){
+				let accessToken = res;
+				this.redirect('Discovery', accessToken);
+			}else{
+				let errors = res;
+				throw errors;
+			}
 
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5}}>
-							<Label style={{ color:'#999' }}>Kullanıcı Adı Belirle</Label>
-							<Input/>
-						</Item>
+		}catch(errors){
+			let formErrors = JSON.parse(errors);
+			let errorsArray = [];
+			for(let key in formErrors){
+				if(formErrors[key].length > 1){
+					formErrors[key].map(error => errorsArray.push('${key} ${error}'))
+				} else{
+					errorsArray.push('${key} ${formErrors[key]}')
+				}
+			}
+			this.setState({ errors: errorsArray });
+		}
+	}
 
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-							<Label style={{ color:'#999' }}>Şifre</Label>
-							<Input/>
-						</Item>
-
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-							<Label style={{ color:'#999' }}>Şifre Tekrar</Label>
-							<Input/>
-						</Item>
-
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-							<Label style={{ color:'#999' }}>E-Posta</Label>
-							<Input/>
-						</Item>
-
-						<Grid>
-							<Row>
-								<Col>
-									<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-										<Label style={{ color:'#999' }}>Adın</Label>
-										<Input/>
-									</Item>
-								</Col>
-								<Col style={{ marginLeft: 16 }}>
-									<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-										<Label style={{ color:'#999' }}>Soyadın</Label>
-										<Input/>
-									</Item>
-								</Col>
-							</Row>
-						</Grid>
-
-						<Button full style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24 }}>
-							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Kayıt Ol</Text>
-					 	</Button>
-
-						<Row style={{ justifyContent: 'center' }}>
-							<Text style={{ marginVertical: 20, fontWeight: '600', fontSize: 14, color: '#999' }}>
-								Sosyal ağlar ile hemen kayıt ol
-							</Text>
-						</Row>
-
-						<Button full iconLeft style={{ backgroundColor:'#3B5998', borderRadius: 3}}>
-							<Icon name='logo-facebook' />
-							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Facebook ile Giriş Yap</Text>
-					 	</Button>
-
-						<Button full iconLeft style={{ backgroundColor:'#1DA1F2', borderRadius: 3, marginTop: 24 }}>
-							<Icon name='logo-twitter' />
-							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Twitter ile Giriş Yap</Text>
-					 	</Button>
-
-					</Form>
-
-				</Content>
+	render(){
+		return(
+			<View style={styles.container}>
+				<TextInput
+					onChangeText={(val) => this.setState({email: val})}
+					style={	styles.input }
+					placeholder="Email"
+				/>
+				<TextInput
+					onChangeText={(val) => this.setState({name: val})}
+					style={	styles.input }
+					placeholder="Name"
+				/>
+				<TextInput
+					onChangeText={(val) => this.setState({password: val})}
+					style={	styles.input }
+					placeholder="Password"
+					secureTextEntry={true}
+				/>
+				<TextInput
+					onChangeText={(val) => this.setState({password_confirmation: val})}
+					style={	styles.input }
+					placeholder="Confirm Password"
+					secureTextEntry={true}
+				/>
+				<TouchableHighlight style={ styles.button } onPress={this.onRegisterPressed.bind(this)}>
+					<Text style={styles.buttonText}>Register</Text>
+				</TouchableHighlight>
 			</View>
-		)
+		);
 	}
 }
+
+const styles = StyleSheet.create({
+  	container: {
+    	flex: 1,
+    	justifyContent: 'flex-start',
+    	alignItems: 'center',
+    	backgroundColor: '#F5FCFF',
+    	padding: 10,
+    	paddingTop: 80
+  	},
+  	input: {
+    	height: 50,
+		width:300,
+    	marginTop: 10,
+    	padding: 4,
+    	fontSize: 18,
+    	borderWidth: 1,
+    	borderColor: '#48bbec'
+  	},
+  	button: {
+    	height: 50,
+    	backgroundColor: '#48BBEC',
+    	alignSelf: 'stretch',
+    	marginTop: 10,
+    	justifyContent: 'center'
+  	},
+  	buttonText: {
+    	fontSize: 22,
+    	color: '#FFF',
+    	alignSelf: 'center'
+  	},
+  	heading: {
+    	fontSize: 30,
+  	},
+  	error: {
+    	color: 'red',
+    	paddingTop: 10
+  	},
+  	loader: {
+    	marginTop: 20
+  	}
+});

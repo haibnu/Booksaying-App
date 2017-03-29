@@ -1,99 +1,169 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
 import {
+	TextInput,
 	TouchableHighlight,
+	AsyncStorage,
 	Text,
 	View,
-	StatusBar,
-	Image,
-	StyleSheet,
-} from 'react-native';
+	StyleSheet
+}from 'react-native';
 
-import {
-	Container,
-	Content,
-	Button,
-	Left,
-	Right,
-	Body,
-	Header,
-	Icon,
-	Title,
-	Form,
-	Item,
-	Input,
-	Label,
-	Col, Row, Grid,
-} from 'native-base';
+const ACCESS_TOKEN = 'access_token';
 
-import {css} from '../styles/css';
+export default class Login extends Component{
 
-export default class Login extends Component {
-	constructor(props){
-		super(props);
+	constructor(){
+		super();
+
+		this.state = {
+			email: "",
+			password: "",
+			error: ""
+		}
 	}
 
-	render() {
-		return (
-			<View style={css.containerWrap}>
-				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
-				  <Left>
-						<Button
-							transparent
-							onPress={() => {
-								this.props.navigator.pop();
-							}}>
-							<Icon name='arrow-back' style={{color: '#50D688'}} />
-						</Button>
-					</Left>
-					<Body>
-						<Title style={{ fontSize: 12, fontWeight: 'bold', color: '#4a4a4a' }}>GİRİŞ YAP</Title>
-					</Body>
-					<Right></Right>
-				</Header>
-				<View style={css.contentWrap }>
+	redirect(routeName, token){
+		this.props.navigator.push({
+			name: routeName,
+			passProps: {
+				accessToken: this.props.accessToken
+			}
+		})
+	}
 
-					<Text style={[css.upperSmallText, { marginBottom: 8 }]}>HEY, ORADAKİ 👋</Text>
-					<Text style={css.bigText}>Tekrar</Text>
-					<Text style={css.bigText}>Hoşgeldin!</Text>
+	async storeToken(accessToken){
+		try {
+			await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
+			this.getToken();
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
 
-					<Form>
+	async getToken(){
+		try {
+			let token = await AsyncStorage.getItem(ACCESS_TOKEN);
+			console.log("token is: " + token);
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
 
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5}}>
-							<Label style={{ color:'#999' }}>Kullanıcı Adı veya E-Posta</Label>
-							<Input/>
-						</Item>
+	async removeToken(){
+		try {
+			await AsyncStorage.removeItem(ACCESS_TOKEN);
+			this.getToken();
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
 
-						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
-							<Label style={{ color:'#999' }}>Şifre</Label>
-							<Input/>
-						</Item>
+	async onLoginPressed(){
+		try {
+			let response = await fetch('https://afternoon-beyond-22141.herokuapp.com/api/login',{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					session: {
+						email: this.state.email,
+						password: this.state.password,
+					}
+				})
+			});
+			let res = await response.text();
+			if(response.status >= 200 && response.status < 300) {
+				this.setState({ error: "" });
+				let accessToken = res;
+				this.storeToken(accessToken);
+				console.log("res token: " + accessToken);
+				this.redirect('Discovery', accessToken);
+			}
+			else {
+				let error = res;
+				throw error;
+			}
+		}catch(error){
+			this.removeToken();
+			this.setState({ error: error });
+			console.log("error" + error);
+		}
+	}
 
-
-						<Button transparent style={{ paddingHorizontal: 0, alignSelf: 'flex-end', marginTop: 16 }}>
-							<Text style={{ color:'#50D688' }}>Şifreni mi Unuttun?</Text>
-						</Button>
-
-
-						<Button full style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24 }}>
-							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Giriş Yap</Text>
-					 	</Button>
-
-					</Form>
-
-					<Button
-						transparent
-						style={{ paddingHorizontal: 0, marginTop: 40 }}
-						onPress={() => {
-							this.props.navigator.push({
-								id: 'Register'
-							});
-						}}>
-						<Text style={{ color:'#4A4A4A', fontSize:13, }}>Hesabın yok mu?</Text>
-						<Text style={{ color:'#4A4A4A', fontSize:13, fontWeight: '600', marginLeft: 5 }}>Kayıt Ol</Text>
-					</Button>
-
-				</View>
+	render(){
+		return(
+			<View style={ styles.container }>
+				<TextInput
+					onChangeText={ (text) => this.setState({ email: text }) }
+					style={ styles.input }
+					placeholder="Email"
+				/>
+				<TextInput
+					onChangeText={ (text) => this.setState({ password: text }) }
+					style={ styles.input }
+					placeholder="Password"
+					secureTextEntry={ true }
+				/>
+				<TouchableHighlight
+					onPress={this.onLoginPressed.bind(this)}
+					style={ styles.button }>
+					<Text style={ styles.buttonText }>
+						Login
+					</Text>
+				</TouchableHighlight>
+				<Text style={ styles.error }>
+					{ this.state.error }
+				</Text>
 			</View>
-		)
+		);
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		backgroundColor: '#F5FCFF',
+		padding: 10,
+		paddingTop: 80
+	},
+	input: {
+		height: 50,
+		width:300,
+		marginTop: 10,
+		padding: 4,
+		fontSize: 18,
+		borderWidth: 1,
+		borderColor: '#48bbec'
+	},
+	button: {
+		height: 50,
+		backgroundColor: '#48BBEC',
+		alignSelf: 'stretch',
+		marginTop: 10,
+		justifyContent: 'center'
+	},
+	buttonText: {
+		fontSize: 22,
+		color: '#FFF',
+		alignSelf: 'center'
+	},
+	heading: {
+		fontSize: 30,
+	},
+	error: {
+		color: 'red',
+		paddingTop: 10
+	},
+	success: {
+		color: 'green',
+		paddingTop: 10
+	},
+	loader: {
+		marginTop: 20
+	}
+});
