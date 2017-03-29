@@ -13,13 +13,12 @@ import Register from './src/components/register';
 import Discovery from './src/components/discovery';
 
 export default class bookSaying extends Component {
-	renderScene(route, navigator){
+    renderScene(route, navigator){
+
 		var routeId = route.id;
+
 		if(routeId === 'Login'){
 			return <Login navigator={navigator}/>;
-		}
-        if(routeId === 'Discovery'){
-			return <Discovery navigator={navigator}/>;
 		}
 		if(routeId === 'Register'){
 			return <Register navigator={navigator}/>;
@@ -27,18 +26,21 @@ export default class bookSaying extends Component {
 		if(routeId === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
 		}
+        if(routeId === 'Discovery'){
+			return <Discovery navigator={navigator}/>;
+		}
 	}
+
 	render() {
 		return(
-            <Navigator
-            	initialRoute={{
-          			id: 'Discovery',
-					name: 'Discovery'
-            	}}
-            	renderScene={
-              		this.renderScene.bind(this)
-            	}
-    		/>
+			<Navigator
+					initialRoute={{
+						id: 'Discovery'
+					}}
+					renderScene={
+						this.renderScene.bind(this)
+					}
+			/>
 		);
 	}
 }

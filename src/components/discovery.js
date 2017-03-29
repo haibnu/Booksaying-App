@@ -84,10 +84,10 @@ export default class discovery extends Component{
 										</Body>
 									</Left>
 									<TouchableHighlight>
-										<Icon name="bookmark" style={{ fontSize:18 }}/>
+										<Icon name="bookmark-border" style={{ fontSize:18, paddingVertical:16 }}/>
 									</TouchableHighlight>
 									<TouchableHighlight>
-										<Icon name="bookmark" style={{ fontSize:18 }}/>
+										<Icon name="more-vert" style={{ fontSize:18, paddingVertical:16 }}/>
 									</TouchableHighlight>
 								</CardItem>
 								<CardItem content>
@@ -107,19 +107,19 @@ export default class discovery extends Component{
 							<Text style={css.footerTabText}>Sözlerim</Text>
 						</Button>
 						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
+							<Icon name="style" style={css.footerTabIcon}/>
 							<Text style={css.footerTabText}>Keşfet</Text>
 						</Button>
 						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
+							<Icon name="add-circle-outline" style={css.footerTabIcon}/>
 							<Text style={css.footerTabText}>Ekle</Text>
 						</Button>
 						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
+							<Icon name="person-outline" style={css.footerTabIcon}/>
 							<Text style={css.footerTabText}>Hesabım</Text>
 						</Button>
 						<Button>
-							<Icon name="bookmark" style={css.footerTabIcon}/>
+							<Icon name="menu" style={css.footerTabIcon}/>
 							<Text style={css.footerTabText}>Diğer</Text>
 						</Button>
 					</FooterTab>
