@@ -101,7 +101,6 @@ export default class discovery extends Component{
 						)}
 			        />
 
-
 				</Content>
 
 				<Tabbar navigator={this.props.navigator} />

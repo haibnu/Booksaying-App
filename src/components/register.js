@@ -25,7 +25,8 @@ import {
 	Col, Row, Grid,
 } from 'native-base';
 
-import {css} from '../styles/css';
+//var css = require('../styles/css');
+import css from '../styles/css';
 
 export default class Login extends Component {
 	constructor(props){
@@ -34,13 +35,13 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<View style={css.containerWrap}>
+			<Container style={{ backgroundColor: 'white' }}>
 				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
 				  <Left>
 						<Button
 							transparent
 							onPress={() => {
-								this.props.navigator.pop({
+								this.props.navigator.push({
 									id: 'Welcome'
 								});
 							}}>
@@ -119,7 +120,7 @@ export default class Login extends Component {
 					</Form>
 
 				</Content>
-			</View>
+			</Container>
 		)
 	}
 }
