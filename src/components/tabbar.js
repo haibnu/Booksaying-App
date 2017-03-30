@@ -54,7 +54,12 @@ export default class Tabbar extends Component{
 						<Icon name="add-circle-outline" style={css.footerTabIcon}/>
 						<Text style={css.footerTabText}>Ekle</Text>
 					</Button>
-					<Button>
+					<Button onPress={() => {
+								this.props.navigator.resetTo({
+									id: 'MyProfile'
+								});
+							}}
+					>
 						<Icon name="person-outline" style={css.footerTabIcon}/>
 						<Text style={css.footerTabText}>Hesabım</Text>
 					</Button>
