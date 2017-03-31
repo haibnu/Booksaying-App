@@ -47,7 +47,7 @@ export default class bookSaying extends Component {
 		return(
 			<Navigator
 				initialRoute={{
-					id: 'MyProfile'
+					id: 'EditProfile'
 				}}
 				renderScene={
 					this.renderScene.bind(this)

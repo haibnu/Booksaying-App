@@ -24,6 +24,9 @@ import Tabbar from './tabbar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class MyProfile extends Component{
+	constructor(props){
+		super(props);
+	}
 	render(){
 		return(
 			<View style={ css.containerWrap }>
@@ -41,7 +44,13 @@ export default class MyProfile extends Component{
 				<View style={{ paddingBottom:40, paddingTop:25, alignItems:'center' }}>
 					<View style={{ width:140, position:'relative' }}>
 						<Image style={ styles.image } source={require('../img/profile.jpg')} />
-						<Button style={{ alignSelf:'flex-end', alignItems:'center', justifyContent:'center', width:45, height:45, position:'absolute', backgroundColor:'white',borderRadius:25}}>
+						<Button
+							onPress={() => {
+										this.props.navigator.resetTo({
+											id: 'EditProfile'
+										});
+									}}
+							style={{ alignSelf:'flex-end', alignItems:'center', justifyContent:'center', width:45, height:45, position:'absolute', backgroundColor:'white',borderRadius:25}}>
 							<MaterialCommunityIcons name='pencil' style={{ fontSize:16, color:'#50D688' }} />
 						</Button>
 					</View>
