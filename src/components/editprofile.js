@@ -5,7 +5,8 @@ import {
 	StatusBar,
 	Image,
 	StyleSheet,
-	Text
+	Text,
+	TouchableHighlight
 } from 'react-native';
 
 import {
@@ -55,22 +56,25 @@ export default class EditProfile extends Component{
 					<Form>
 						<Grid style={{ paddingHorizontal:40, paddingTop:12, paddingBottom:16}}>
 							<Row style={{ marginBottom:25 }}>
-								<Col style={{ flexDirection:'row' }}>
-									<Text>booksaying.com/</Text>
-									<Text>@haibnu</Text>
+								<Col style={{ flexDirection:'row', alignItems:'center' }}>
+									<Text style={{ color:'#9B9B9B', fontSize:13 }}>booksaying.com /</Text>
+									<Text style={{ color:'#379646', fontSize:16, fontWeight:'500' }}>@haibnu</Text>
 								</Col>
 							</Row>
 							<Row>
-								<Col>
+								<Col style={{ justifyContent:'center', alignItems:'center' }}>
 									<Image style={ styles.image } source={require('../img/profile.jpg')} />
+									<TouchableHighlight style={{ width:20, height:18, position:'absolute', backgroundColor:'transparent',borderRadius:25}}>
+										<Icon name='photo-camera' style={{ fontSize:16, color:'#50D688' }} />
+									</TouchableHighlight>
 								</Col>
 								<Col>
 									<Item labelStyle={{ marginTop:0 }} floatingLabel style={{borderWidth:.5, height: 41}}>
-										<Label style={{ color:'#999', marginTop: 0 }}>Ad</Label>
+										<Label style={{ color:'#9B9B9B', fontSize:11, fontWeight:'500' }}>Ad</Label>
 										<Input inputStyle={{ marginTop:0 }} style={{ height: 36, lineHeight: 20, marginTop: 0 }}/>
 									</Item>
 									<Item floatingLabel style={{borderWidth:.5, height: 41}}>
-										<Label style={{ color:'#999', marginTop: 0 }}>Soyad</Label>
+										<Label style={{ color:'#9B9B9B', fontSize:11, fontWeight:'500' }}>Soyad</Label>
 										<Input style={{ height: 36, lineHeight: 20, marginTop: 0 }}/>
 									</Item>
 								</Col>
@@ -78,23 +82,23 @@ export default class EditProfile extends Component{
 						</Grid>
 						<View style={{ paddingHorizontal:40 }}>
 							<Item floatingLabel style={{borderWidth:.5, marginTop: 16}}>
-								<Label style={{ color:'#999' }}>Şifre</Label>
+								<Label style={{ color:'rgba(51,51,51,0.4)', fontSize:15, fontWeight:'500' }}>Şifre</Label>
 								<Input/>
 							</Item>
 							<Item floatingLabel style={{borderWidth:.5, marginTop: 8}}>
-								<Label style={{ color:'#999' }}>Şifre Tekrar</Label>
+								<Label style={{ color:'rgba(51,51,51,0.4)', fontSize:15, fontWeight:'500' }}>Şifre Tekrar</Label>
 								<Input/>
 							</Item>
 							<Item floatingLabel style={{borderWidth:.5, marginTop: 8}}>
-								<Label style={{ color:'#999' }}>E-Posta</Label>
+								<Label style={{ color:'rgba(51,51,51,0.4)', fontSize:15, fontWeight:'500' }}>E-Posta</Label>
 								<Input/>
 							</Item>
 							<Item floatingLabel style={{borderWidth:.5, marginTop: 8}}>
-								<Label style={{ color:'#999' }}>Doğum Tarihi</Label>
+								<Label style={{ color:'rgba(51,51,51,0.4)', fontSize:15, fontWeight:'500' }}>Doğum Tarihi</Label>
 								<Input/>
 							</Item>
 							<Item floatingLabel style={{borderWidth:.5, marginTop: 8}}>
-								<Label style={{ color:'#999' }}>Yaşadığınız Şehir</Label>
+								<Label style={{ color:'rgba(51,51,51,0.4)', fontSize:15, fontWeight:'500' }}>Yaşadığınız Şehir</Label>
 								<Input style={{ width:295 }}/>
 							</Item>
 							<Button full iconLeft style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24, marginBottom:67 }}>
@@ -103,7 +107,7 @@ export default class EditProfile extends Component{
 						</View>
 					</Form>
 				</Content>
-				<Tabbar />
+				<Tabbar navigator={this.props.navigator}/>
 			</View>
 		);
 	}
@@ -114,6 +118,8 @@ const styles = StyleSheet.create({
 		width: 120,
 		height: 120,
 		borderRadius: 66,
-		borderWidth:10
+		borderWidth:10,
+		opacity:0.5,
+		justifyContent:'center'
 	}
 });
