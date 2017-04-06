@@ -15,6 +15,7 @@ import MyFeed from './src/components/myfeed';
 import MyProfile from './src/components/myprofile';
 import EditProfile from './src/components/editprofile';
 import Add from './src/components/add';
+import BookSearch from './src/components/booksearch';
 
 export default class bookSaying extends Component {
     renderScene(route, navigator){
@@ -45,13 +46,16 @@ export default class bookSaying extends Component {
         if(routeId === 'Add'){
 			return <Add navigator={navigator}/>;
 		}
+        if(routeId === 'BookSearch'){
+			return <BookSearch navigator={navigator}/>;
+		}
 	}
 
 	render(){
 		return(
 			<Navigator
 				initialRoute={{
-					id: 'Add'
+					id: 'Discovery'
 				}}
 				renderScene={
 					this.renderScene.bind(this)

@@ -14,11 +14,11 @@ import {
 	Content,
 	Button,
 	Body,
-	Card, CardItem,
 	Thumbnail,
 	Left,
 	Header,
-	Title
+	Title,
+	Card, CardItem
 } from 'native-base';
 
 import {css} from '../styles/css';

@@ -50,7 +50,12 @@ export default class Tabbar extends Component{
 						<MaterialCommunityIcons name="cards-outline" style={ css.footerTabIcon } />
 						<Text style={css.footerTabText}>Keşfet</Text>
 					</Button>
-					<Button>
+					<Button onPress={() => {
+								this.props.navigator.resetTo({
+									id: 'Add'
+								});
+							}}
+					>
 						<Icon name="add-circle-outline" style={css.footerTabIcon}/>
 						<Text style={css.footerTabText}>Ekle</Text>
 					</Button>
