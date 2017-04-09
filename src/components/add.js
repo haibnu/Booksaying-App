@@ -6,7 +6,10 @@ import {
 	StatusBar,
 	TouchableHighlight,
 	TextInput,
-	UselessTextInput
+	UselessTextInput,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
+	StyleSheet
 } from 'react-native';
 
 import {
@@ -28,55 +31,54 @@ export default class Add extends Component{
 	render(){
 		return(
 			<View style={css.containerWrap}>
-				<View style={{ backgroundColor:'white' }}>
-					<Header noShadow style={{ backgroundColor:'white', alignItems:'stretch' }}>
-						<StatusBar
-							backgroundColor='#BFBFBF'
-						/>
-						<Left>
-							<TouchableHighlight
-								transparent
-								onPress={() => {
-									this.props.navigator.pop();
-								}}>
-								<Icon name='keyboard-arrow-left' style={{fontSize:24, color: '#50D688'}} />
-							</TouchableHighlight>
-						</Left>
-						<Body>
-							<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>EKLE</Title>
-						</Body>
-						<Right>
-							<TouchableHighlight style={{ backgroundColor:'transparent' }}>
-								<Icon name="done" style={{ fontSize:24, color: '#50D688' }}/>
-							</TouchableHighlight>
-						</Right>
-					</Header>
-				</View>
+				<Header noShadow style={{ backgroundColor:'white', alignItems:'stretch', borderBottomColor:'transparent', paddingLeft:0 }}>
+					<StatusBar backgroundColor='#BFBFBF'/>
+					<Left>
+						<TouchableOpacity style={{ backgroundColor:'transparent' }}
+							onPress={() => {
+								this.props.navigator.pop();
+							}}>
+							<Icon name='keyboard-arrow-left' style={{fontSize:32, color: '#50D688'}} />
+						</TouchableOpacity>
+					</Left>
+					<Body>
+						<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>EKLE</Title>
+					</Body>
+					<Right>
+						<TouchableOpacity
+							onPress={() => {
+								this.props.navigator.push({
+									id: 'Discovery'
+								});
+							}}>
+							<Icon name="done" style={{fontSize:24, color: '#50D688'}}/>
+						</TouchableOpacity>
+					</Right>
+				</Header>
+
 				<Grid>
-					<Row size={2.5}>
+					<Row style={{ flex:1, alignItems:'stretch' }}>
 						<TextInput
-		 					numberOfLines = {4}
 							multiline={true}
-							style={{ paddingHorizontal:40, alignItems:'center' ,borderBottomColor:'white', fontSize:18, fontWeight:'300', flex:1, height:200, textAlignVertical:'top' }}
+							style={{ marginHorizontal:24, marginVertical: 14, alignItems:'center' ,borderBottomColor:'white', fontSize:18, fontWeight:'300', flex:1, textAlignVertical:'top' }}
 							placeholder="O güzel sözü bizimle de paylaş (:"
 							placeholderTextColor='rgba(51,51,51,0.4)'
 							underlineColorAndroid='transparent'>
 						</TextInput>
 					</Row>
-					<Row size={0.5} style={{ flex:1, alignItems:'stretch' }}>
+					<Row style={{ height: 170, alignItems:'stretch' }}>
 						<Col>
 							<Row style={{ height:56, alignItems:'center',flexDirection:'row', borderTopColor:'rgba(51,51,51,0.4)', borderTopWidth:1, borderBottomColor:'rgba(51,51,51,0.4)', borderBottomWidth:1 }}>
 								<Icon name="book" style={{ paddingRight:8 ,fontSize:20,paddingLeft:20, color:'rgba(51,51,51,0.4)' }}/>
 								<Text style={{ fontSize:15, fontWeight:'500', color:'rgba(51,51,51,0.4)' }}>Kitap Seç</Text>
-								<TouchableHighlight style={{ backgroundColor:'transparent' }}
-													onPress={() => {
-														this.props.navigator.resetTo({
-															id: 'BookSearch'
-														});
-													}}
-								>
+								<TouchableWithoutFeedback
+										onPress={() => {
+											this.props.navigator.push({
+												id: 'BookSearch'
+											});
+										}}>
 									<Icon name="keyboard-arrow-right" style={{ fontSize:20 }} />
-								</TouchableHighlight>
+								</TouchableWithoutFeedback>
 							</Row>
 							<Row style={{alignItems:'center',height:56, flexDirection:'row', borderBottomColor:'rgba(51,51,51,0.4)', borderBottomWidth:1}}>
 								<Icon name="mode-edit" style={{ paddingRight:8 ,fontSize:20,paddingLeft:20, color:'rgba(51,51,51,0.4)' }}/>
@@ -89,7 +91,27 @@ export default class Add extends Component{
 						</Col>
 					</Row>
 				</Grid>
+
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+  container: {
+	flex: 1,
+	justifyContent: 'center',
+	alignItems: 'center',
+	backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+	fontSize: 20,
+	textAlign: 'center',
+	margin: 10,
+  },
+  instructions: {
+	textAlign: 'center',
+	color: '#333333',
+	marginBottom: 5,
+  },
+});

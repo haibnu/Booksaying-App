@@ -42,9 +42,7 @@ export default class Login extends Component {
 						<Button
 							transparent
 							onPress={() => {
-								this.props.navigator.push({
-									id: 'Welcome'
-								});
+								this.props.navigator.pop();
 							}}>
 							<Icon name='arrow-back' style={{color: '#50D688'}} />
 						</Button>

@@ -77,5 +77,6 @@ export const css = StyleSheet.create({
 	},
 	navigatorTitle: {
 		fontSize: 12, fontWeight: 'bold', color: '#4a4a4a'
-	}
+	},
+	searchBookName: { color: 'blue' }
 });
