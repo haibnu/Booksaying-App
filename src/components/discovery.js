@@ -26,7 +26,7 @@ import {
 	Footer,
 	FooterTab,
 	Card, CardItem,
-    Thumbnail
+	Thumbnail
 } from 'native-base';
 
 import {css} from '../styles/css';
@@ -66,7 +66,7 @@ export default class discovery extends Component{
 					</Header>
 				</View>
 
-				<View style={{ height:190, backgroundColor:'#50D688' }}>
+				<View style={{ height:190, marginTop: -1, backgroundColor:'#50D688' }}>
 
 				</View>
 

@@ -17,6 +17,12 @@ import Welcome from './src/components/Welcome/Welcome';
 import Login from './src/components/login';
 import Register from './src/components/register';
 import ForgotPassword from './src/components/forgot-password';
+import Discovery from './src/components/discovery';
+import MyFeed from './src/components/myfeed';
+import MyProfile from './src/components/myprofile';
+import EditProfile from './src/components/editprofile';
+import Add from './src/components/add';
+import BookSearch from './src/components/booksearch';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
@@ -35,6 +41,24 @@ export default class bookSaying extends Component {
 		if(routeId === 'ForgotPassword'){
 			return <ForgotPassword navigator={navigator}/>;
 		}
+		if(routeId === 'Discovery'){
+			return <Discovery navigator={navigator}/>;
+		}
+		if(routeId === 'MyFeed'){
+			return <MyFeed navigator={navigator}/>;
+		}
+		if(routeId === 'MyProfile'){
+			return <MyProfile navigator={navigator}/>;
+		}
+		if(routeId === 'EditProfile'){
+			return <EditProfile navigator={navigator}/>;
+		}
+		if(routeId === 'Add'){
+			return <Add navigator={navigator}/>;
+		}
+		if(routeId === 'BookSearch'){
+			return <BookSearch navigator={navigator}/>;
+		}
 
 	}
 
@@ -42,7 +66,7 @@ export default class bookSaying extends Component {
 		return(
 			<Navigator
 					initialRoute={{
-						id: 'Welcome'
+						id: 'Discovery'
 					}}
 					renderScene={
 						this.renderScene.bind(this)
@@ -51,9 +75,5 @@ export default class bookSaying extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	// styles
-});
 
 AppRegistry.registerComponent('bookSaying', () => bookSaying);

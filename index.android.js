@@ -1,4 +1,10 @@
+/**
+ * Booksaying App with React Native
+ * https://github.com/facebook/react-native
+ * Author by @haibnu, @gomod0r
+ */
 import React, { Component } from 'react';
+
 import {
   AppRegistry,
   StyleSheet,
@@ -7,9 +13,11 @@ import {
   Navigator,
   StatusBar
 } from 'react-native';
+
 import Welcome from './src/components/Welcome/Welcome';
 import Login from './src/components/login';
 import Register from './src/components/register';
+import ForgotPassword from './src/components/forgot-password';
 import Discovery from './src/components/discovery';
 import MyFeed from './src/components/myfeed';
 import MyProfile from './src/components/myprofile';
@@ -18,7 +26,7 @@ import Add from './src/components/add';
 import BookSearch from './src/components/booksearch';
 
 export default class bookSaying extends Component {
-    renderScene(route, navigator){
+	renderScene(route, navigator){
 
 		var routeId = route.id;
 
@@ -31,22 +39,25 @@ export default class bookSaying extends Component {
 		if(routeId === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
 		}
-        if(routeId === 'MyFeed'){
-			return <MyFeed navigator={navigator}/>;
-        }
-        if(routeId === 'Discovery'){
+		if(routeId === 'ForgotPassword'){
+			return <ForgotPassword navigator={navigator}/>;
+		}
+		if(routeId === 'Discovery'){
 			return <Discovery navigator={navigator}/>;
 		}
-        if(routeId === 'MyProfile'){
+		if(routeId === 'MyFeed'){
+			return <MyFeed navigator={navigator}/>;
+		}
+		if(routeId === 'MyProfile'){
 			return <MyProfile navigator={navigator}/>;
 		}
-        if(routeId === 'EditProfile'){
+		if(routeId === 'EditProfile'){
 			return <EditProfile navigator={navigator}/>;
 		}
-        if(routeId === 'Add'){
+		if(routeId === 'Add'){
 			return <Add navigator={navigator}/>;
 		}
-        if(routeId === 'BookSearch'){
+		if(routeId === 'BookSearch'){
 			return <BookSearch navigator={navigator}/>;
 		}
 	}

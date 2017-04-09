@@ -83,7 +83,14 @@ export default class Login extends Component {
 						</Button>
 
 
-						<Button full style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24 }}>
+						<Button
+							full
+							style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24 }}
+							onPress={() => {
+								this.props.navigator.push({
+									id: 'Discovery'
+								});
+							}}>
 							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Giriş Yap</Text>
 					 	</Button>
 
