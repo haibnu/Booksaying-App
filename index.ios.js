@@ -16,6 +16,7 @@ import {
 import Welcome from './src/components/Welcome/Welcome';
 import Login from './src/components/login';
 import Register from './src/components/register';
+import ForgotPassword from './src/components/forgot-password';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
@@ -30,6 +31,9 @@ export default class bookSaying extends Component {
 		}
 		if(routeId === 'Welcome'){
 			return <Welcome navigator={navigator}/>;
+		}
+		if(routeId === 'ForgotPassword'){
+			return <ForgotPassword navigator={navigator}/>;
 		}
 
 	}

@@ -27,6 +27,8 @@ import {
 
 import {css} from '../styles/css';
 
+const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
+
 export default class Login extends Component {
 	constructor(props){
 		super(props);
@@ -53,24 +55,31 @@ export default class Login extends Component {
 				<View style={css.contentWrap }>
 
 					<Text style={[css.upperSmallText, { marginBottom: 8 }]}>HEY, ORADAKİ 👋</Text>
-					<Text style={css.bigText}>Tekrar</Text>
-					<Text style={css.bigText}>Hoşgeldin!</Text>
+					<Text style={css.bigText}>Tekrar {"\n"}Hoşgeldin!</Text>
 
 					<Form>
 
 						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5}}>
 							<Label style={{ color:'#999' }}>Kullanıcı Adı veya E-Posta</Label>
-							<Input/>
+							<Input keyboardType={'email-address'}/>
 						</Item>
 
 						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
 							<Label style={{ color:'#999' }}>Şifre</Label>
-							<Input/>
+							<Input secureTextEntry={true}/>
 						</Item>
 
 
 						<Button transparent style={{ paddingHorizontal: 0, alignSelf: 'flex-end', marginTop: 16 }}>
-							<Text style={{ color:'#50D688' }}>Şifreni mi Unuttun?</Text>
+							<Text
+								style={{ color:'#50D688' }}
+								onPress={() => {
+									this.props.navigator.push({
+										id: 'ForgotPassword'
+									});
+								}}>
+								Şifreni mi Unuttun?
+							</Text>
 						</Button>
 
 
@@ -82,14 +91,16 @@ export default class Login extends Component {
 
 					<Button
 						transparent
-						style={{ paddingHorizontal: 0, marginTop: 40 }}
+						style={{
+							paddingHorizontal: 0,
+							marginTop: 24
+						}}
 						onPress={() => {
 							this.props.navigator.push({
 								id: 'Register'
 							});
 						}}>
-						<Text style={{ color:'#4A4A4A', fontSize:13, }}>Hesabın yok mu?</Text>
-						<Text style={{ color:'#4A4A4A', fontSize:13, fontWeight: '600', marginLeft: 5 }}>Kayıt Ol</Text>
+						<Text style={{ color: '#4A4A4A' }}>Hesabın yok mu?<B> Kayıt Ol</B></Text>
 					</Button>
 
 				</View>

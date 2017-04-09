@@ -67,7 +67,15 @@ export const css = StyleSheet.create({
 	},
 	editProfileLabel:{
 		color:'rgba(51,51,51,0.4)',
-	    fontSize:15, 
+		fontSize:15,
 		fontWeight:'500'
+	},
+	xSmallText: {
+		fontSize: 11,
+		color: 'rgba(51,51,51,0.4)',
+		lineHeight: 15,
+	},
+	navigatorTitle: {
+		fontSize: 12, fontWeight: 'bold', color: '#4a4a4a'
 	}
 });
