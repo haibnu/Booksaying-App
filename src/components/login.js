@@ -38,7 +38,7 @@ export default class Login extends Component {
 		return (
 			<View style={css.containerWrap}>
 				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
-				  <Left>
+				    <Left>
 						<Button
 							transparent
 							onPress={() => {

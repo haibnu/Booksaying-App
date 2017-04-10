@@ -70,7 +70,7 @@ export default class discovery extends Component{
 
 				</View>
 
-				<Content style={{ paddingVertical: 24, paddingHorizontal: 40 }}>
+				<Content style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 
 					<Text style={{ fontSize:11, color:'#9B9B9B', fontWeight:'600' }}>
 						BU SÖZLERİ DE BEĞENEBİLİRSİN
@@ -78,7 +78,7 @@ export default class discovery extends Component{
 					<ListView
 			          	dataSource={this.state.dataSource}
 			          	renderRow={(data) => (
-							<Card style={{ marginTop:16 }}>
+							<Card noShadow style={{ marginTop:16 }}>
 								<CardItem>
 									<Left>
 										<Thumbnail source={require('../img/profile.jpg')} style={{ width:46, height:46 }}/>
