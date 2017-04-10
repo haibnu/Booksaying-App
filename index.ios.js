@@ -23,6 +23,9 @@ import MyProfile from './src/components/myprofile';
 import EditProfile from './src/components/editprofile';
 import Add from './src/components/add';
 import BookSearch from './src/components/booksearch';
+import Other from './src/components/other';
+import EmailRequired from './src/components/emailrequired';
+import BookDetail from './src/components/bookdetail';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
@@ -58,6 +61,15 @@ export default class bookSaying extends Component {
 		}
 		if(routeId === 'BookSearch'){
 			return <BookSearch navigator={navigator}/>;
+		}
+		if(routeId === 'Other'){
+			return <Other navigator={navigator}/>;
+		}
+		if(routeId === 'EmailRequired'){
+			return <EmailRequired navigator={navigator}/>;
+		}
+		if(routeId === 'BookDetail'){
+			return <BookDetail navigator={navigator}/>;
 		}
 
 	}

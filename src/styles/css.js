@@ -65,6 +65,10 @@ export const css = StyleSheet.create({
 		fontSize:10,
 		color:'#929292'
 	},
+	footerTabSmallText:{
+		fontSize:7,
+		color:'#929292'
+	},
 	editProfileLabel:{
 		color:'rgba(51,51,51,0.4)',
 		fontSize:15,

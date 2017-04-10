@@ -31,10 +31,8 @@ export default class MyProfile extends Component{
 		return(
 			<View style={ css.containerWrap }>
 				<View style={{ backgroundColor:'white' }}>
-					<Header noShadow style={{ backgroundColor:'white' }}>
-						<StatusBar
-							backgroundColor='#BFBFBF'
-						/>
+					<Header noShadow style={{ backgroundColor:'white', borderBottomColor:'transparent' }}>
+						<StatusBar backgroundColor='#BFBFBF' />
 						<Body>
 							<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>PROFİLİM</Title>
 				 		</Body>
