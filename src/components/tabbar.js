@@ -24,6 +24,10 @@ import {css} from '../styles/css';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import DeviceInfo from 'react-native-device-info';
+
+console.log(DeviceInfo.getModel());
+
 export default class Tabbar extends Component{
 	constructor(props){
 		super(props);
@@ -48,7 +52,7 @@ export default class Tabbar extends Component{
 							}}
 					>
 						<MaterialCommunityIcons name="cards-outline" style={ css.footerTabIcon } />
-						<Text style={css.footerTabText}>Keşfet</Text>
+						<Text style={ (DeviceInfo.getModel() == 'iPhone 5') ? css.footerTabText : css.footerTabText }>Keşfet</Text>
 					</Button>
 					<Button onPress={() => {
 								this.props.navigator.resetTo({

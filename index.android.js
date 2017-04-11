@@ -6,12 +6,12 @@
 import React, { Component } from 'react';
 
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Navigator,
-  StatusBar
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View,
+	Navigator,
+	StatusBar
 } from 'react-native';
 
 import Welcome from './src/components/Welcome/Welcome';
@@ -64,13 +64,13 @@ export default class bookSaying extends Component {
 		if(routeId === 'BookSearch'){
 			return <BookSearch navigator={navigator}/>;
 		}
-        if(routeId === 'Other'){
+		if(routeId === 'Other'){
 			return <Other navigator={navigator}/>;
 		}
-        if(routeId === 'EmailRequired'){
+		if(routeId === 'EmailRequired'){
 			return <EmailRequired navigator={navigator}/>;
 		}
-        if(routeId === 'BookDetail'){
+		if(routeId === 'BookDetail'){
 			return <BookDetail navigator={navigator}/>;
 		}
         if(routeId === 'QuoteDetail'){
@@ -82,7 +82,7 @@ export default class bookSaying extends Component {
 		return(
 			<Navigator
 				initialRoute={{
-					id: 'EmailRequired'
+					id: 'BookDetail'
 				}}
 				renderScene={
 					this.renderScene.bind(this)
@@ -93,22 +93,22 @@ export default class bookSaying extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+	container: {
 	flex: 1,
 	justifyContent: 'center',
 	alignItems: 'center',
 	backgroundColor: '#F5FCFF',
-  },
-  welcome: {
+	},
+	welcome: {
 	fontSize: 20,
 	textAlign: 'center',
 	margin: 10,
-  },
-  instructions: {
+	},
+	instructions: {
 	textAlign: 'center',
 	color: '#333333',
 	marginBottom: 5,
-  },
+	},
 });
 
 AppRegistry.registerComponent('bookSaying', () => bookSaying);
