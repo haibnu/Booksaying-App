@@ -6,6 +6,7 @@ import {
 	StatusBar,
 	Image,
 	StyleSheet,
+	Platform
 } from 'react-native';
 
 import {
@@ -37,7 +38,7 @@ export default class Login extends Component {
 	render() {
 		return (
 			<View style={css.containerWrap}>
-				<Header style={{ backgroundColor:'transparent', borderBottomColor:'transparent' }}>
+				<Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'transparent', borderBottomColor:'transparent' }}>
 				    <Left>
 						<Button
 							transparent

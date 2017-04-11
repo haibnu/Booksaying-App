@@ -9,7 +9,8 @@ import {
 	UselessTextInput,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
-	StyleSheet
+	StyleSheet,
+	Platform
 } from 'react-native';
 
 import {
@@ -33,10 +34,16 @@ export default class Add extends Component{
 	render(){
 		return(
 			<View style={css.containerWrap}>
-				<Header noShadow style={{ backgroundColor:'white', alignItems:'stretch', borderBottomColor:'transparent', paddingLeft:0 }}>
+				<Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'white', alignItems:'stretch', borderBottomColor:'transparent', paddingLeft:0 }}>
 					<StatusBar backgroundColor='#BFBFBF'/>
 					<Left>
-
+						<Button
+							transparent
+							onPress={() => {
+								this.props.navigator.pop();
+							}}>
+							<Icon name='arrow-back' style={{color: '#50D688', fontSize:24}} />
+						</Button>
 					</Left>
 					<Body>
 						<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>EKLE</Title>
@@ -86,7 +93,7 @@ export default class Add extends Component{
 							</Col>
 						</Row>
 
-						<Row style={{height:56, paddingRight:8, paddingLeft:16, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
+						<Row style={{height:56, paddingRight:8, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
 							<Button block transparent style={{ padding: 0, flex:1, height:54, justifyContent: 'flex-start' }} onPress={() => {
 								this.props.navigator.push({
 									id: 'BookSearch'
@@ -104,7 +111,7 @@ export default class Add extends Component{
 							</Button>
 						</Row>
 
-						<Row style={{height:56, paddingRight:8, paddingLeft:16, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
+						<Row style={{height:56, paddingRight:8, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
 							<Button block transparent style={{ padding: 0, flex:1, height:54, justifyContent: 'flex-start' }} onPress={() => {
 								this.props.navigator.push({
 									id: 'BookSearch'

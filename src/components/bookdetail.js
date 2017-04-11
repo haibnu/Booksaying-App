@@ -6,7 +6,8 @@ import {
 	ListView,
 	TouchableHighlight,
 	Text,
-	Image
+	Image,
+	Platform
 } from 'react-native';
 
 import {
@@ -23,8 +24,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Tabbar from './tabbar'
-
-const { BlurView, VibrancyView } = require('react-native-blur');
 
 export default class BookDetail extends Component{
 
@@ -72,30 +71,28 @@ export default class BookDetail extends Component{
 			<View style={ css.containerWrap }>
 				<Content>
 					<Image blurRadius={1} source={require('../img/kus.jpg')} resizeMode={Image.resizeMode.center} style={{flex: 1, height:null, width:null, resizeMode: 'cover'}}>
-						<BlurView blurType="light" blurAmount={10} viewRef={1}>
-							<Header noShadow style={{ backgroundColor:'transparent' }}>
-								<StatusBar
-									translucent
-									backgroundColor='transparent'
-								/>
-								<Left>
-									<Button
-										transparent
-										onPress={() => {
-											this.props.navigator.pop();
-										}}>
-										<Icon name='arrow-back' style={{ color: '#FFFFFF', fontSize:24 }} />
-									</Button>
-								</Left>
-								<Body></Body>
-								<Right></Right>
-							</Header>
-							<View style={{ height:280, marginTop: -1, alignItems:'center', paddingTop:14 }}>
-								<Image blurRadius={1} style={{ height:160, width:110, backgroundColor:'red' }} source={require('../img/kus.jpg')} />
-								<Text style={{ color:'#FFFFFF', fontSize:17, fontWeight:'600', paddingTop:29, paddingBottom:8 }}>Ve Sen Kuş Olur Gidersin</Text>
-								<Text style={{ color:'rgba(255,255,255,0.6)', fontSize:13, fontWeight:'600' }}>Tarık Tufan</Text>
-							</View>
-						</BlurView>
+						<Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'rgba(0,0,0,0.4)' }}>
+							<StatusBar
+								translucent
+								backgroundColor='transparent'
+							/>
+							<Left>
+								<Button
+									transparent
+									onPress={() => {
+										this.props.navigator.pop();
+									}}>
+									<Icon name='arrow-back' style={{ color: '#FFFFFF', fontSize:24 }} />
+								</Button>
+							</Left>
+							<Body></Body>
+							<Right></Right>
+						</Header>
+						<View style={{ height:280, alignItems:'center', paddingTop:14, backgroundColor:'rgba(0,0,0,0.4)' }}>
+							<Image style={{ height:160, width:110 }} source={require('../img/kus.jpg')} />
+							<Text style={{ color:'#FFFFFF', fontSize:17, fontWeight:'600', paddingTop:29, paddingBottom:8 }}>Ve Sen Kuş Olur Gidersin</Text>
+							<Text style={{ color:'rgba(255,255,255,0.6)', fontSize:13, fontWeight:'600' }}>Tarık Tufan</Text>
+						</View>
 					</Image>
 					<View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 						<ListView

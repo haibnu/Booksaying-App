@@ -5,7 +5,8 @@ import {
     StatusBar,
     Text,
     TextInput,
-    TouchableHighlight
+    TouchableHighlight,
+    Platform
 } from 'react-native';
 
 import {
@@ -29,7 +30,7 @@ export default class EmailRequired extends Component{
     render(){
         return(
             <View style={css.containerWrap}>
-                <Header noShadow style={{ backgroundColor:'white' }}>
+                <Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'white' }}>
                     <StatusBar
                         backgroundColor='#BFBFBF'
                     />

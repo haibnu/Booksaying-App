@@ -6,7 +6,8 @@ import {
 	Image,
 	StyleSheet,
 	Text,
-	TouchableHighlight
+	TouchableHighlight,
+	Platform
 } from 'react-native';
 
 import {
@@ -33,7 +34,7 @@ export default class EditProfile extends Component{
 		return(
 			<View style={ css.containerWrap }>
 				<View style={{ backgroundColor:'white' }}>
-					<Header noShadow style={{ backgroundColor:'white', alignItems:'stretch' }}>
+					<Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'white', alignItems:'stretch' }}>
 						<StatusBar
 							backgroundColor='#BFBFBF'
 						/>

@@ -27,6 +27,7 @@ import BookSearch from './src/components/booksearch';
 import Other from './src/components/other';
 import EmailRequired from './src/components/emailrequired';
 import BookDetail from './src/components/bookdetail';
+import QuoteDetail from './src/components/quotedetail';
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){
@@ -72,13 +73,16 @@ export default class bookSaying extends Component {
         if(routeId === 'BookDetail'){
 			return <BookDetail navigator={navigator}/>;
 		}
+        if(routeId === 'QuoteDetail'){
+			return <QuoteDetail navigator={navigator}/>;
+		}
 	}
 
 	render(){
 		return(
 			<Navigator
 				initialRoute={{
-					id: 'BookDetail'
+					id: 'EmailRequired'
 				}}
 				renderScene={
 					this.renderScene.bind(this)

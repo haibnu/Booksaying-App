@@ -67,14 +67,6 @@ import com.android.build.OutputFile
 
 apply from: "../../node_modules/react-native/react.gradle"
 
-
-project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
-]
-
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-
-
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -100,8 +92,6 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-        renderscriptTargetApi 20
-        renderscriptSupportModeEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -135,25 +125,10 @@ android {
     }
 }
 
-repositories {
-    maven { url 'https://github.com/500px/500px-android-blur/raw/master/releases/' }
-}
-
 dependencies {
-    compile project(':react-native-blur')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile project(':react-native-blur')
-}
-
-buildscript {
-    repositories {
-        maven { url 'https://github.com/500px/500px-android-blur/raw/master/releases/' }
-    }
-    dependencies {
-        classpath 'com.fivehundredpx:blurringview:1.0.0'
-    }
 }
 
 // Run this once to be able to run the application with BUCK
