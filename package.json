@@ -13,6 +13,7 @@
     "react-native": "0.42.3",
     "react-native-blur": "^2.0.0",
     "react-native-device-info": "^0.10.2",
+    "react-native-gifted-listview": "0.0.15",
     "react-native-vector-icons": "^4.0.0"
   },
   "devDependencies": {

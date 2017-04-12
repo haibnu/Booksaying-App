@@ -36,21 +36,44 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Tabbar from './tabbar'
 
+const productArray = [];
+
 export default class discovery extends Component{
+	currentPage = 1;
 	constructor(props) {
 	    super(props);
-	    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+	    const dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 	    this.state = {
-	      	dataSource: ds.cloneWithRows([
-	        	{
-					name: 'Hakan Şahin',
-					bookCount: 5,
-					quoteCount: 176,
-					quote: 'Başarısızlığa uğradığınız ana kadar,başarıp başaramadığınızı bilemezsiniz.'
-				}
-	      	])
+	      	dataSource: dataSource.cloneWithRows(productArray),
+			isLoading:true
 	    };
 	}
+	loadData(){
+		this.getTheData(function(json){
+
+			productArray = productArray.concat(json);
+
+			this.setState({
+				dataSource: this.state.dataSource.cloneWithRows(productArray),
+				isLoading:false
+			});
+		}.bind(this));
+	}
+
+	componentDidMount(){
+		this.loadData();
+	}
+
+	getTheData(callback){
+		this.setState({
+			isLoading:true
+		});
+		fetch("http://booksaying.com/api/ali/saying/?page="+this.currentPage)
+		.then(response => response.json())
+		.then(json => callback(json))
+		.catch(error => console.log(error));
+	}
+
 	render(){
 		return(
 			<View style={css.containerWrap}>
@@ -75,6 +98,14 @@ export default class discovery extends Component{
 					<Text style={{ fontSize:11, color:'#9B9B9B', fontWeight:'600' }}>
 						BU SÖZLERİ DE BEĞENEBİLİRSİN
 					</Text>
+
+					<TouchableHighlight onPress={() => {
+												this.currentPage=this.currentPage+1;
+												this.loadData();
+										}}>
+						<Text>Load More</Text>
+					</TouchableHighlight>
+
 					<ListView
 			          	dataSource={this.state.dataSource}
 			          	renderRow={(data) => (
@@ -83,8 +114,8 @@ export default class discovery extends Component{
 									<Left>
 										<Thumbnail source={require('../img/profile.jpg')} style={{ width:46, height:46 }}/>
 										<Body>
-											<Text style={{ fontSize:14, color:'#4A4A4A' }}>{data.name}</Text>
-											<Text note style={{ marginTop:6, fontSize:11, color:'#4A4A4A' }}>{data.bookCount} Kitaptan {data.quoteCount} Sözü var</Text>
+											<Text style={{ fontSize:14, color:'#4A4A4A' }}>Hakan Şahin</Text>
+											<Text note style={{ marginTop:6, fontSize:11, color:'#4A4A4A' }}>55 Kitaptan 178 Sözü var</Text>
 										</Body>
 									</Left>
 									<TouchableHighlight>
@@ -95,7 +126,7 @@ export default class discovery extends Component{
 									</TouchableHighlight>
 								</CardItem>
 								<CardItem content>
-		                              <Text>{ data.quote }</Text>
+		                              <Text>{ data.saying }</Text>
 		                        </CardItem>
 							</Card>
 						)}
