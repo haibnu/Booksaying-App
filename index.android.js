@@ -82,7 +82,7 @@ export default class bookSaying extends Component {
 		return(
 			<Navigator
 				initialRoute={{
-					id: 'BookDetail'
+					id: 'Discovery'
 				}}
 				renderScene={
 					this.renderScene.bind(this)
