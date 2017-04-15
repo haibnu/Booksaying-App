@@ -73,7 +73,7 @@ export default class bookSaying extends Component {
 		if(routeId === 'BookDetail'){
 			return <BookDetail navigator={navigator}/>;
 		}
-        if(routeId === 'QuoteDetail'){
+		if(routeId === 'QuoteDetail'){
 			return <QuoteDetail navigator={navigator}/>;
 		}
 	}

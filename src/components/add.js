@@ -20,13 +20,14 @@ import {
 	Right,
 	Button,
 	Title,
+	Icon,
 	Grid,Row,Col,
 	Input, InputGroup,
 } from 'native-base';
 
 import {css} from '../styles/css';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Tabbar from './tabbar'
 
@@ -55,7 +56,7 @@ export default class Add extends Component{
 									id: 'Discovery'
 								});
 							}}>
-							<Icon name="done" style={{fontSize:24, color: '#50D688'}}/>
+							<MaterialIcon name="done" style={{fontSize:24, color: '#50D688'}}/>
 						</TouchableOpacity>
 					</Right>
 				</Header>
@@ -77,7 +78,7 @@ export default class Add extends Component{
 						<Row style={{ height:56, paddingRight:8, paddingLeft:16, alignItems:'center', flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1 }}>
 							<Col size={60}>
 								<Row style={{ alignItems:'center' }}>
-									<Icon name="format-quote" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
+									<MaterialIcon name="format-quote" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Bu söz kitap dışı mı?</Text>
 								</Row>
 							</Col>
@@ -101,7 +102,7 @@ export default class Add extends Component{
 							}}>
 								<Col size={60}>
 									<Row style={{ alignItems:'center' }}>
-										<Icon name="book" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
+										<MaterialIcon name="book" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Kitap Seç</Text>
 									</Row>
 								</Col>
@@ -119,7 +120,7 @@ export default class Add extends Component{
 							}}>
 								<Col size={60}>
 									<Row style={{ alignItems:'center' }}>
-										<Icon name="mode-edit" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
+										<MaterialIcon name="mode-edit" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Yazar Seç</Text>
 									</Row>
 								</Col>
@@ -132,7 +133,7 @@ export default class Add extends Component{
 						<Row style={{ height:56, paddingRight:8, paddingLeft:16, alignItems:'center', flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1 }}>
 							<Col size={60}>
 								<Row style={{ alignItems:'center' }}>
-									<Icon name="bookmark" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
+									<MaterialIcon name="bookmark" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Sayfa Numarası</Text>
 								</Row>
 							</Col>

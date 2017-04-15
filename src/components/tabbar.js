@@ -15,10 +15,6 @@ import {
 	FooterTab,
 } from 'native-base';
 
-import MyFeed from './myfeed';
-
-import Discovery from './discovery';
-
 import {css} from '../styles/css';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';

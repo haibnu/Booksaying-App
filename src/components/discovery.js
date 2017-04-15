@@ -12,21 +12,12 @@ import {
 } from 'react-native';
 
 import {
-	Container,
-	Content,
+	Container, Content,
+	Header, Left, Right, Body, Title,
 	Button,
-	Left,
-	Right,
-	Body,
-	Header,
-	Title,
-	Form,
-	Item,
-	Input,
-	Label,
+	Form, Input, Label,
 	Col, Row, Grid,
-	Footer,
-	FooterTab,
+	Footer, FooterTab,
 	Card, CardItem,
 	Thumbnail
 } from 'native-base';
@@ -43,11 +34,11 @@ const productArray = [];
 const LoadingIndicator = ({ loading }) => (
 	loading ? (
 		<View style={ styles.loading }>
-		  <ActivityIndicator
+			<ActivityIndicator
 			animating={ true }
 			style={[ styles.loading ]}
 			size="large"
-		  />
+			/>
 		</View>
 	) : null
 )
@@ -113,8 +104,8 @@ export default class discovery extends Component{
 	_renderRow(row) {
 		if (row.loading === true) {
 			console.log('adas');
-	      return <LoadingIndicator loading={ true } />
-	    } else {
+				return <LoadingIndicator loading={ true } />
+			} else {
 			return (
 				<Card noShadow style={{ marginTop:16, marginLeft: 20, marginRight: 20  }}>
 					<CardItem>
@@ -133,7 +124,7 @@ export default class discovery extends Component{
 						</TouchableHighlight>
 					</CardItem>
 					<CardItem content>
-						  <Text>{ row.saying }</Text>
+							<Text>{ row.saying }</Text>
 					</CardItem>
 				</Card>
 			)
@@ -157,12 +148,9 @@ export default class discovery extends Component{
 	render(){
 		return(
 			<View style={css.containerWrap}>
-
 				<View>
-					<Header noShadow style={{ backgroundColor:'#50D688' }}>
-						<StatusBar
-							backgroundColor='#50D688'
-						/>
+					<Header noShadow style={{ backgroundColor:'#50D688', borderBottomColor:'transparent' }}>
+						<StatusBar backgroundColor='#50D688' />
 						<Body>
 							<Image style={{ alignSelf:'center', width:41, height:28, resizeMode:'contain' }} source={require('../img/logo-navbar@2x.png')} />
 						</Body>
