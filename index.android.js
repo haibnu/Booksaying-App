@@ -28,6 +28,7 @@ import Other from './src/components/other';
 import EmailRequired from './src/components/emailrequired';
 import BookDetail from './src/components/bookdetail';
 import QuoteDetail from './src/components/quotedetail';
+import Card from './src/components/card'
 
 export default class bookSaying extends Component {
 	renderScene(route, navigator){

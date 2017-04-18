@@ -8,7 +8,8 @@ import {
 	StyleSheet,
 	ListView,
 	RefreshControl,
-	ActivityIndicator
+	ActivityIndicator,
+	TouchableWithoutFeedback
 } from 'react-native';
 
 import {
@@ -18,7 +19,6 @@ import {
 	Form, Input, Label,
 	Col, Row, Grid,
 	Footer, FooterTab,
-	Card, CardItem,
 	Thumbnail
 } from 'native-base';
 
@@ -28,6 +28,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Tabbar from './tabbar'
+
+import Card from './card'
 
 const productArray = [];
 
@@ -107,26 +109,10 @@ export default class discovery extends Component{
 				return <LoadingIndicator loading={ true } />
 			} else {
 			return (
-				<Card noShadow style={{ marginTop:16, marginLeft: 20, marginRight: 20  }}>
-					<CardItem>
-						<Left>
-							<Thumbnail source={require('../img/profile.jpg')} style={{ width:46, height:46 }}/>
-							<Body>
-								<Text style={{ fontSize:14, color:'#4A4A4A' }}>Hakan Şahin</Text>
-								<Text note style={{ marginTop:6, fontSize:11, color:'#4A4A4A' }}>55 Kitaptan 178 Sözü var</Text>
-							</Body>
-						</Left>
-						<TouchableHighlight>
-							<MaterialCommunityIcons name="bookmark-plus-outline" style={{ fontSize:18 }}/>
-						</TouchableHighlight>
-						<TouchableHighlight>
-							<MaterialCommunityIcons name="dots-vertical" style={{ fontSize:18 }}/>
-						</TouchableHighlight>
-					</CardItem>
-					<CardItem content>
-							<Text>{ row.saying }</Text>
-					</CardItem>
-				</Card>
+				<View style={{ marginTop:16, marginLeft:20, marginRight:20 }}>
+							<Card navigator={this.props.navigator} onPress primaryText="Hakan Şahin" secondaryText="55 Kitaptan 176 Sözü Var" sayingSummary={row.saying} style={{ marginTop:16, marginLeft: 20, marginRight: 20  }}>
+							</Card>
+				</View>
 			)
 			this.cardCount = this.cardCount + 1;
 		}

@@ -32,7 +32,7 @@ export default class MyFeed extends Component{
 		this.state = {
 			dataSource: ds.cloneWithRows([
 				{
-					bookName: 'Yaratıcılık : Kuraları Boşverin',
+					bookName: 'asdfasdfsad',
 					author: 'John Hegarty',
 					page: 53,
 					quote: 'Ani değerlendirmeler ve hızlı kararlar çoğunlukla başarısız işler yaratır.'
@@ -73,7 +73,7 @@ export default class MyFeed extends Component{
 					<ListView
 						dataSource={this.state.dataSource}
 						renderRow={(data) => (
-							<Card></Card>
+							<Card primaryText={ data.bookName } secondaryText={data.author} sayingSummary= { data.quote}></Card>
 						)}
 					/>
 				</Content>

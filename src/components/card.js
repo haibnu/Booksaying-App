@@ -17,15 +17,12 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Card extends Component {
+	constructor(props){
+		super(props);
+	}
 	render() {
 		return (
-			<View style={css.cardContainer}>
-				<TouchableWithoutFeedback
-					onPress={() => {
-						this.props.navigator.resetTo({
-							id: 'Discovery'
-						});
-					}}>
+			<View {...this.props} style={css.cardContainer}>
 					<View style={css.cardBody}>
 						<Grid>
 							<Row>
@@ -35,14 +32,18 @@ export default class Card extends Component {
 										source={require('../img/profile.jpg')} />
 								</Col>
 								<Col style={css.cardInfo}>
-									<Text
+									<Text onPress={() => {
+												this.props.navigator.push({
+													id: 'MyProfile'
+												});
+											}}
 										style={css.primaryText}
 										numberOfLines={1}>
-										Estelle Shelton Shelton Shelton Shelton
+										{this.props.primaryText}
 									</Text>
 									<Text
 										style={css.secondaryText}>
-										5 Kitaptan 178 Sözü var
+										{this.props.secondaryText}
 									</Text>
 								</Col>
 								<View style={[css.actionButtonWrap]}>
@@ -54,10 +55,13 @@ export default class Card extends Component {
 									</TouchableWithoutFeedback>
 								</View>
 							</Row>
-							<Text style={css.sayingSummary}>Başarısızlığa uğradığınız ana kadar, başarıp başaramadığınızı bilemezsiniz.</Text>
+							<Text onPress={() => {
+										this.props.navigator.push({
+											id: 'QuoteDetail'
+										});
+									}} style={css.sayingSummary}>{this.props.sayingSummary}</Text>
 						</Grid>
 					</View>
-				</TouchableWithoutFeedback>
 			</View>
 		);
 	}

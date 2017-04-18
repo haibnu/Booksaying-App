@@ -27,18 +27,24 @@ console.log(DeviceInfo.getModel());
 export default class Tabbar extends Component{
 	constructor(props){
 		super(props);
+		this.state={
+			pressStatus:false
+		}
 	}
+
 	render(){
 		return(
 			<Footer style={{ height:49 }}>
 				<FooterTab style={{ backgroundColor:'#FFFFFF' }}>
-					<Button onPress={() => {
+					<Button
+							onPress={() => {
 								this.props.navigator.resetTo({
 									id: 'MyFeed'
 								});
 							}}
 					>
-						<Icon name="bookmark-border" style={css.footerTabIcon}/>
+					{	this.state.pressStatus ? <Icon name="bookmark" style={css.footerTabIcon}/> : <Icon name="bookmark-border" style={css.footerTabIcon}/>
+					}
 						<Text style={css.footerTabText}>Sözlerim</Text>
 					</Button>
 					<Button onPress={() => {
