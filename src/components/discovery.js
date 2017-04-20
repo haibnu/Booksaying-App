@@ -159,7 +159,12 @@ export default class discovery extends Component{
 					onEndReachedThreshold={10}
 				/>
 
-				<Tabbar navigator={this.props.navigator} />
+				<Tabbar textFeed={ css.footerTabText } nameFeed='bookmark-border' styleFeed={css.footerTabIcon}
+						textDiscovery={ css.footerTabTextClick } nameDiscovery='cards' styleDiscovery={styles.styleFeed}
+						textAdd={ css.footerTabText } nameAdd='add-circle-outline' styleAdd={styles.other}
+						textProfile={ css.footerTabText } nameProfile='perm-identity' styleProfile={styles.other}
+						textOther={ css.footerTabText } nameOther='dehaze' styleOther={styles.other}
+						navigator={this.props.navigator} />
 
 			</View>
 		);
@@ -172,6 +177,14 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 20,
 		backgroundColor: '#F5FCFF'
+	},
+	styleFeed:{
+		fontSize:26,
+		color:'#50D688'
+	},
+	other:{
+		fontSize:26,
+		color:'#9B9B9B'
 	},
 	loading: {
 		flex: 1,

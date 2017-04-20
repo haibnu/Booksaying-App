@@ -5,7 +5,8 @@ import {
 	View,
 	Image,
 	StatusBar,
-	Platform
+	Platform,
+	StyleSheet
 } from 'react-native';
 
 import {
@@ -77,8 +78,23 @@ export default class QuoteDetail extends Component{
 						</View>
 					</View>
 				</View>
-				<Tabbar navigator={this.props.navigator} />
+				<Tabbar textFeed={ css.footerTabText } nameFeed='bookmark-border' styleFeed={css.footerTabIcon}
+						textDiscovery={ css.footerTabText } nameDiscovery='cards-outline' styleDiscovery={styles.other}
+						textAdd={ css.footerTabText } nameAdd='add-circle-outline' styleAdd={styles.other}
+						textProfile={ css.footerTabText } nameProfile='perm-identity' styleProfile={styles.other}
+						textOther={ css.footerTabText } nameOther='dehaze' styleOther={styles.other}
+						navigator={this.props.navigator}/>
 			</View>
 		);
 	}
 }
+const styles = StyleSheet.create({
+	styleFeed:{
+		fontSize:26,
+		color:'#50D688'
+	},
+	other:{
+		fontSize:26,
+		color:'#9B9B9B'
+	},
+});

@@ -65,6 +65,10 @@ export const css = StyleSheet.create({
 		fontSize:10,
 		color:'#929292'
 	},
+	footerTabTextClick:{
+		fontSize:10,
+		color:'#50D688'
+	},
 	footerTabSmallText:{
 		fontSize:7,
 		color:'#929292'

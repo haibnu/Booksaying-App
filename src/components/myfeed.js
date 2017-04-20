@@ -142,13 +142,26 @@ export default class MyFeed extends Component{
 						onEndReachedThreshold={1}
 					/>
 				</Content>
-				<Tabbar navigator={ this.props.navigator } />
+				<Tabbar textFeed={ css.footerTabTextClick } nameFeed='bookmark' styleFeed={styles.styleFeed}
+						textDiscovery={ css.footerTabText } nameDiscovery='cards-outline' styleDiscovery={styles.other}
+						textAdd={ css.footerTabText } nameAdd='add-circle-outline' styleAdd={styles.other}
+						textProfile={ css.footerTabText } nameProfile='perm-identity' styleProfile={styles.other}
+						textOther={ css.footerTabText } nameOther='dehaze' styleOther={styles.other}
+						navigator={ this.props.navigator } />
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	styleFeed:{
+		fontSize:26,
+		color:'#50D688'
+	},
+	other:{
+		fontSize:26,
+		color:'#9B9B9B'
+	},
 	container: {
 		flex: 1,
 		marginTop: 20,

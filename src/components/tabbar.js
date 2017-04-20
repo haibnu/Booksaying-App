@@ -27,9 +27,6 @@ console.log(DeviceInfo.getModel());
 export default class Tabbar extends Component{
 	constructor(props){
 		super(props);
-		this.state={
-			pressStatus:false
-		}
 	}
 
 	render(){
@@ -43,9 +40,8 @@ export default class Tabbar extends Component{
 								});
 							}}
 					>
-					{	this.state.pressStatus ? <Icon name="bookmark" style={css.footerTabIcon}/> : <Icon name="bookmark-border" style={css.footerTabIcon}/>
-					}
-						<Text style={css.footerTabText}>Sözlerim</Text>
+						<Icon name={this.props.nameFeed} style={this.props.styleFeed}/>
+						<Text style={this.props.textFeed}>Sözlerim</Text>
 					</Button>
 					<Button onPress={() => {
 								this.props.navigator.resetTo({
@@ -53,8 +49,8 @@ export default class Tabbar extends Component{
 								});
 							}}
 					>
-						<MaterialCommunityIcons name="cards-outline" style={ css.footerTabIcon } />
-						<Text style={ (DeviceInfo.getModel() == 'iPhone 5') ? css.footerTabText : css.footerTabText }>Keşfet</Text>
+						<MaterialCommunityIcons name={this.props.nameDiscovery} style={ this.props.styleDiscovery } />
+						<Text style={ (DeviceInfo.getModel() == 'iPhone 5') ? this.props.textDiscovery : this.props.textDiscovery }>Keşfet</Text>
 					</Button>
 					<Button onPress={() => {
 								this.props.navigator.resetTo({
@@ -62,8 +58,8 @@ export default class Tabbar extends Component{
 								});
 							}}
 					>
-						<Icon name="add-circle-outline" style={css.footerTabIcon}/>
-						<Text style={css.footerTabText}>Ekle</Text>
+						<Icon name={this.props.nameAdd} style={this.props.styleAdd}/>
+						<Text style={this.props.textAdd}>Ekle</Text>
 					</Button>
 					<Button onPress={() => {
 								this.props.navigator.resetTo({
@@ -71,16 +67,16 @@ export default class Tabbar extends Component{
 								});
 							}}
 					>
-						<Icon name="person-outline" style={css.footerTabIcon}/>
-						<Text style={css.footerTabText}>Hesabım</Text>
+						<Icon name={this.props.nameProfile} style={this.props.styleProfile}/>
+						<Text style={this.props.textProfile}>Hesabım</Text>
 					</Button>
 					<Button onPress={() => {
 								this.props.navigator.resetTo({
 									id: 'Other'
 								});
 							}}>
-						<Icon name="menu" style={css.footerTabIcon}/>
-						<Text style={css.footerTabText}>Diğer</Text>
+						<Icon name={this.props.nameOther} style={this.props.styleOther}/>
+						<Text style={this.props.textOther}>Diğer</Text>
 					</Button>
 				</FooterTab>
 			</Footer>

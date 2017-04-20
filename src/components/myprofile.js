@@ -78,7 +78,12 @@ export default class MyProfile extends Component{
 					</Col>
 				</Grid>
 
-				<Tabbar navigator={this.props.navigator} />
+				<Tabbar textFeed={ css.footerTabText } nameFeed='bookmark-border' styleFeed={css.footerTabIcon}
+						textDiscovery={ css.footerTabText } nameDiscovery='cards-outline' styleDiscovery={styles.other}
+						textAdd={ css.footerTabText } nameAdd='add-circle-outline' styleAdd={styles.other}
+						textProfile={ css.footerTabTextClick } nameProfile='person' styleProfile={styles.styleFeed}
+						textOther={ css.footerTabText } nameOther='dehaze' styleOther={styles.other}
+						navigator={this.props.navigator} />
 
 			</View>
 		);
@@ -91,5 +96,13 @@ const styles = StyleSheet.create({
 		height: 132,
 		borderRadius: 66,
 		borderWidth:10
-	}
+	},
+	styleFeed:{
+		fontSize:26,
+		color:'#50D688'
+	},
+	other:{
+		fontSize:26,
+		color:'#9B9B9B'
+	},
 });
