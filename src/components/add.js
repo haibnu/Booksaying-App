@@ -37,15 +37,7 @@ export default class Add extends Component{
 			<View style={css.containerWrap}>
 				<Header noShadow style={{ paddingLeft:(Platform.OS === 'android') ? 0 : 16, backgroundColor:'white', alignItems:'stretch', borderBottomColor:'transparent', paddingLeft:0 }}>
 					<StatusBar backgroundColor='#BFBFBF'/>
-					<Left>
-						<Button
-							transparent
-							onPress={() => {
-								this.props.navigator.pop();
-							}}>
-							<Icon name='arrow-back' style={{color: '#50D688', fontSize:24}} />
-						</Button>
-					</Left>
+					<Left></Left>
 					<Body>
 						<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>EKLE</Title>
 					</Body>
