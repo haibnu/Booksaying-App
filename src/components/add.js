@@ -69,7 +69,7 @@ export default class Add extends Component{
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Bu söz kitap dışı mı?</Text>
 								</Row>
 							</Col>
-							<Col>
+							<Col style={{ width: 140 }}>
 								<Row style={{ alignItems:'center', height: 38 }}>
 									<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, borderTopLeftRadius:19, borderBottomLeftRadius:19, height:38, borderWidth:1, borderColor:'#50D688'}}>
 										<Text style={{ width: 60, textAlign: 'center', backgroundColor: 'transparent' }}>Evet</Text>
@@ -93,7 +93,7 @@ export default class Add extends Component{
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Kitap Seç</Text>
 									</Row>
 								</Col>
-								<Col>
+								<Col style={{ width: 140 }}>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#50D688' }} numberOfLines={1}>Fikir Nasıl Bulunur?</Text>
 								</Col>
 							</Button>
@@ -111,7 +111,7 @@ export default class Add extends Component{
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Yazar Seç</Text>
 									</Row>
 								</Col>
-								<Col>
+								<Col style={{ width: 140 }}>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#50D688' }}>Jack Foster</Text>
 								</Col>
 							</Button>
@@ -124,14 +124,14 @@ export default class Add extends Component{
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Sayfa Numarası</Text>
 								</Row>
 							</Col>
-							<Col>
-								<Row style={{ padding:0, alignItems:'center' }}>
-									<Col size={1}>
+							<Col style={{ width: 140 }}>
+								<Row style={{ padding:0, alignItems:'center', width:140 }}>
+									<Col style={{ width: 40 }}>
 										<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, height:36}}>
 											<Icon name="remove-circle" style={{ fontSize: 36, color: '#50D688' }} />
 										</Button>
 									</Col>
-									<Col size={2}>
+									<Col>
 										<TextInput
 											placeholder="0"
 											keyboardType="numeric"
@@ -140,7 +140,7 @@ export default class Add extends Component{
 											onChangeText={(text) => this.setState({text})}
 										/>
 									</Col>
-									<Col size={1}>
+									<Col style={{ width: 40 }}>
 										<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, height:36}}>
 											<Icon name="add-circle" style={{ fontSize: 36, color: '#50D688' }} />
 										</Button>
@@ -168,7 +168,7 @@ export default class Add extends Component{
 					nameOther='dehaze'
 					styleOther={styles.other}
 					navigator={this.props.navigator}/>
-					
+
 			</View>
 		);
 	}
@@ -191,5 +191,9 @@ const styles = StyleSheet.create({
 		borderTopColor:'#d7d7d7',
 		borderTopWidth:1,
 		paddingLeft: 16,
+	},
+	propertiesValue: {
+		width: 140
 	}
+
 })
