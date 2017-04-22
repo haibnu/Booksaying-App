@@ -3,19 +3,17 @@ import {
 	ListView,
 	StatusBar,
 	View,
-
+	TextInput,
 } from 'react-native'
 
 import {
-	Container,
-	Header, Left, Body,
+	Container, Content, ListItem,
+	Header, Left, Body, Right,
 	Item,
 	Input,
 	Icon,
-	Card, CardItem,
 	Button,
 	Text,
-	Content, ListItem,
 	Grid, Row, Col
 } from 'native-base'
 
@@ -99,46 +97,48 @@ export default class BookSearch extends Component {
 	 render() {
 			return (
 				<View style={css.containerWrap}>
-					 <Header searchBar rounded style={{ backgroundColor:'#fff', borderBottomColor:'transparent', shadowOffset:{ width:0, height:3 }, shadowColor:'black', shadowOpacity:.08, shadowRadius:5 }}>
-						<StatusBar backgroundColor='#50D688'/>
+					<Header searchBar rounded style={{ backgroundColor:'#fff', borderBottomColor:'transparent', shadowOffset:{ width:0, height:3 }, shadowColor:'black', shadowOpacity:.08, shadowRadius:5, alignItems:'center' }}>
+					<StatusBar backgroundColor='#50D688'/>
 						<Button
 							transparent
 							style={{ paddingLeft:0, paddingRight:10 }}
 							onPress={() => {
 								this.props.navigator.pop();
 							}}>
-							<Icon name='arrow-back' style={{color: '#50D688'}} />
+							<Icon name='arrow-back' style={{color: '#50D688', fontSize: 28}} />
 						</Button>
-						<Item style={{ backgroundColor: '#F1F1F1', height: 31 }}>
-							<MaterialIcon name="search" style={{ color: '#4A4A4A', fontSize:20, marginLeft:8, marginTop:2, marginRight: 5 }} />
-							<Input
+						<View style={{ flex:1, backgroundColor: '#F1F1F1', height: 31, borderRadius:16, flexDirection:'row', alignItems:'center' }}>
+							<View style={{ width: 32 }}>
+								<MaterialIcon name="search" style={{ color: '#4A4A4A', fontSize:20, marginLeft:8, marginTop:2, marginRight: 5 }} />
+							</View>
+							<TextInput
 								placeholder="Kitap Ara"
 								placeholderTextColor='rgba(51,51,51,0.4)'
-								style={{ fontSize:13, marginTop:-1 }} />
-						</Item>
-					 </Header>
-					 <Content>
-							<ListView
-								dataSource={this.state.dataSource}
-								renderRow={(data) => (
-									<ListItem
-										style={{ borderBottomColor:'#D8D8D8' }}
-										button
-										onPress={() => {
-											this.props.navigator.push({
-												id: 'Add'
-											});
-										}}>
-										<Row size={55}>
-												<Text style={{ color: '#50D688', fontSize:15, lineHeight:18, fontWeight:'500' }}>{data.bookName}</Text>
-										</Row>
-										<Row size={45}>
-										 	<Text style={{ color: '#9B9B9B', fontSize:13, lineHeight:15 }}>{data.bookAuthor}</Text>
-										</Row>
-									</ListItem>
-								)}>
-							</ListView>
-					 </Content>
+								style={{ flex:1, fontSize:13 }} />
+						</View>
+					</Header>
+					<Content>
+						<ListView
+							dataSource={this.state.dataSource}
+							renderRow={(data) => (
+								<ListItem
+									style={{ borderBottomColor:'#D8D8D8' }}
+									button
+									onPress={() => {
+										this.props.navigator.push({
+											id: 'Add'
+										});
+									}}>
+									<Row size={55}>
+											<Text style={{ color: '#50D688', fontSize:15, lineHeight:18, fontWeight:'500' }}>{data.bookName}</Text>
+									</Row>
+									<Row size={45}>
+									 	<Text style={{ color: '#9B9B9B', fontSize:13, lineHeight:15 }}>{data.bookAuthor}</Text>
+									</Row>
+								</ListItem>
+							)}>
+						</ListView>
+					</Content>
 				</View>
 			);
 	 }
