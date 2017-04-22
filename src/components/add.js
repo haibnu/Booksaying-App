@@ -5,23 +5,18 @@ import {
 	Text,
 	StatusBar,
 	TouchableHighlight,
-	TextInput,
-	UselessTextInput,
 	TouchableOpacity,
 	TouchableWithoutFeedback,
+	TextInput,
+	UselessTextInput,
 	StyleSheet,
 	Platform
 } from 'react-native';
 
 import {
-	Header,
-	Left,
-	Body,
-	Right,
-	Button,
-	Title,
-	Icon,
-	Grid,Row,Col,
+	Header, Left, Body, Right,
+	Button, Title, Icon,
+	Grid, Row, Col,
 	Input, InputGroup,
 } from 'native-base';
 
@@ -67,14 +62,14 @@ export default class Add extends Component{
 
 					<View style={{ height: 224 }}>
 
-						<Row style={{ height:56, paddingRight:8, paddingLeft:16, alignItems:'center', flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1 }}>
-							<Col size={60}>
+						<Row style={ styles.propertiesRow }>
+							<Col>
 								<Row style={{ alignItems:'center' }}>
 									<MaterialIcon name="format-quote" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Bu söz kitap dışı mı?</Text>
 								</Row>
 							</Col>
-							<Col size={40}>
+							<Col>
 								<Row style={{ alignItems:'center', height: 38 }}>
 									<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, borderTopLeftRadius:19, borderBottomLeftRadius:19, height:38, borderWidth:1, borderColor:'#50D688'}}>
 										<Text style={{ width: 60, textAlign: 'center', backgroundColor: 'transparent' }}>Evet</Text>
@@ -86,75 +81,94 @@ export default class Add extends Component{
 							</Col>
 						</Row>
 
-						<Row style={{height:56, paddingRight:8, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
+						<Row style={ styles.propertiesRow }>
 							<Button block transparent style={{ padding: 0, flex:1, height:54, justifyContent: 'flex-start' }} onPress={() => {
 								this.props.navigator.push({
 									id: 'BookSearch'
 								});
 							}}>
-								<Col size={60}>
+								<Col>
 									<Row style={{ alignItems:'center' }}>
 										<MaterialIcon name="book" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Kitap Seç</Text>
 									</Row>
 								</Col>
-								<Col size={40}>
+								<Col>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#50D688' }} numberOfLines={1}>Fikir Nasıl Bulunur?</Text>
 								</Col>
 							</Button>
 						</Row>
 
-						<Row style={{height:56, paddingRight:8, flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1}}>
-							<Button block transparent style={{ padding: 0, flex:1, height:54, justifyContent: 'flex-start' }} onPress={() => {
+						<Row style={ styles.propertiesRow }>
+							<Button block transparent style={{ padding: 0, margin:0, flex:1, height:54, justifyContent: 'flex-start' }} onPress={() => {
 								this.props.navigator.push({
 									id: 'BookSearch'
 								});
 							}}>
-								<Col size={60}>
+								<Col>
 									<Row style={{ alignItems:'center' }}>
 										<MaterialIcon name="mode-edit" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 										<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Yazar Seç</Text>
 									</Row>
 								</Col>
-								<Col size={40}>
+								<Col>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#50D688' }}>Jack Foster</Text>
 								</Col>
 							</Button>
 						</Row>
 
-						<Row style={{ height:56, paddingRight:8, paddingLeft:16, alignItems:'center', flexDirection:'row', borderTopColor:'#d7d7d7', borderTopWidth:1 }}>
-							<Col size={60}>
+						<Row style={ styles.propertiesRow }>
+							<Col>
 								<Row style={{ alignItems:'center' }}>
 									<MaterialIcon name="bookmark" style={{ paddingRight:8, fontSize:20, color:'rgba(51,51,51,0.4)' }}/>
 									<Text style={{ fontSize:13, fontWeight:'500', color:'#4A4A4A' }}>Sayfa Numarası</Text>
 								</Row>
 							</Col>
-							<Col size={40}>
-								<View style={{ position:'relative' }}>
-									<Button transparent style={{ position:'absolute', top: 1, left: 2, padding: 0, margin: 0, borderRadius:0, height:36}}>
-										<Icon name="add-circle" style={{ fontSize: 36, color: '#50D688' }} />
-									</Button>
-									<Button transparent style={{ position:'absolute', top: 1, right: 2, padding: 0, margin: 0, borderRadius:0, height:36}}>
-										<Icon name="remove-circle" style={{ fontSize: 36, color: '#50D688' }} />
-									</Button>
-									<Input
-										placeholder="0"
-										placeholderTextColor='rgba(51,51,51,0.4)'
-										underlineColorAndroid='transparent'
-										style={{ fontSize: 14, textAlign: 'center', borderWidth:1, borderColor:'#50D688', height: 38, borderRadius: 19, justifyContent: 'center' }}/>
-								</View>
+							<Col>
+								<Row style={{ padding:0, alignItems:'center' }}>
+									<Col size={1}>
+										<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, height:36}}>
+											<Icon name="remove-circle" style={{ fontSize: 36, color: '#50D688' }} />
+										</Button>
+									</Col>
+									<Col size={2}>
+										<TextInput
+											placeholder="0"
+											keyboardType="numeric"
+											placeholderTextColor='rgba(51,51,51,0.4)'
+											style={{ flex:1, fontSize: 18, textAlign: 'center', borderBottomWidth:1, borderBottomColor:'#50D688', height: 38, justifyContent: 'center' }}
+											onChangeText={(text) => this.setState({text})}
+										/>
+									</Col>
+									<Col size={1}>
+										<Button transparent style={{ padding: 0, margin: 0, borderRadius:0, height:36}}>
+											<Icon name="add-circle" style={{ fontSize: 36, color: '#50D688' }} />
+										</Button>
+									</Col>
+								</Row>
 							</Col>
 						</Row>
 					</View>
 				</Grid>
 
-				<Tabbar textFeed={ css.footerTabText } nameFeed='bookmark-border' styleFeed={css.footerTabIcon}
-						textDiscovery={ css.footerTabText } nameDiscovery='cards-outline' styleDiscovery={styles.other}
-						textAdd={ css.footerTabTextClick } nameAdd='add-circle-outline' styleAdd={styles.styleFeed}
-						textProfile={ css.footerTabText } nameProfile='perm-identity' styleProfile={styles.other}
-						textOther={ css.footerTabText } nameOther='dehaze' styleOther={styles.other}
-						navigator={this.props.navigator}/>
-
+				<Tabbar
+					textFeed={ css.footerTabText }
+					nameFeed='bookmark-border'
+					styleFeed={css.footerTabIcon}
+					textDiscovery={ css.footerTabText }
+					nameDiscovery='cards-outline'
+					styleDiscovery={styles.other}
+					textAdd={ css.footerTabTextClick }
+					nameAdd='add-circle'
+					styleAdd={styles.styleFeed}
+					textProfile={ css.footerTabText }
+					nameProfile='perm-identity'
+					styleProfile={styles.other}
+					textOther={ css.footerTabText }
+					nameOther='dehaze'
+					styleOther={styles.other}
+					navigator={this.props.navigator}/>
+					
 			</View>
 		);
 	}
@@ -168,5 +182,14 @@ const styles = StyleSheet.create({
 	other:{
 		fontSize:26,
 		color:'#9B9B9B'
+	},
+	propertiesRow: {
+		height:56,
+		paddingRight:8,
+		alignItems:'center',
+		flexDirection:'row',
+		borderTopColor:'#d7d7d7',
+		borderTopWidth:1,
+		paddingLeft: 16,
 	}
 })
