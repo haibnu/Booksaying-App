@@ -22,7 +22,7 @@ import Discovery from './src/components/discovery';
 import MyFeed from './src/components/myfeed';
 import MyProfile from './src/components/myprofile';
 import EditProfile from './src/components/editprofile';
-import Add from './src/components/add';
+import Add from './src/components/addANDROID';
 import BookSearch from './src/components/booksearch';
 import Other from './src/components/other';
 import EmailRequired from './src/components/emailrequired';
