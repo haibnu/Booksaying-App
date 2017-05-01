@@ -6,7 +6,8 @@ import {
 	StatusBar,
 	Image,
 	StyleSheet,
-	Platform
+	Platform,
+	AsyncStorage
 } from 'react-native';
 
 import {
@@ -30,9 +31,87 @@ import {css} from '../styles/css';
 
 const B = (props) => <Text style={{fontWeight: 'bold'}}>{props.children}</Text>
 
+const ACCESS_TOKEN = 'access_token';
+
 export default class Login extends Component {
-	constructor(props){
-		super(props);
+	constructor(){
+		super();
+
+		this.state = {
+			email: "",
+			password: "",
+			error: ""
+		}
+	}
+
+	redirect(routeName, token){
+		this.props.navigator.resetTo({
+			id: routeName,
+			passProps: {
+				accessToken: this.props.accessToken
+			}
+		})
+	}
+
+	async storeToken(accessToken){
+		try {
+			await AsyncStorage.setItem(ACCESS_TOKEN, accessToken);
+			this.getToken();
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
+
+	async getToken(){
+		try {
+			let token = await AsyncStorage.getItem(ACCESS_TOKEN);
+			console.log("token is: " + token);
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
+
+	async removeToken(){
+		try {
+			await AsyncStorage.removeItem(ACCESS_TOKEN);
+			this.getToken();
+		} catch (error) {
+			console.log("something went wrong")
+		}
+	}
+
+	async onLoginPressed(){
+		try {
+			let response = await fetch('https://afternoon-beyond-22141.herokuapp.com/api/login',{
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					session: {
+						email: this.state.email,
+						password: this.state.password,
+					}
+				})
+			});
+			let res = await response.text();
+			if(response.status >= 200 && response.status < 300) {
+				this.setState({ error: "" });
+				let accessToken = res;
+				this.storeToken(accessToken);
+				console.log("res token: " + accessToken);
+				this.redirect('Discovery', accessToken);
+			}
+			else {
+				let error = res;
+				throw error;
+			}
+		}catch(error){
+			this.removeToken();
+			this.setState({ error: error });
+			console.log("error" + error);
+		}
 	}
 
 	render() {
@@ -62,12 +141,14 @@ export default class Login extends Component {
 
 						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5}}>
 							<Label style={{ color:'#999' }}>Kullanıcı Adı veya E-Posta</Label>
-							<Input keyboardType={'email-address'}/>
+							<Input onChangeText={ (text) => this.setState({ email: text }) }
+								   keyboardType={'email-address'}/>
 						</Item>
 
 						<Item floatingLabel style={{marginLeft: 0, borderWidth:.5, marginTop: 12}}>
 							<Label style={{ color:'#999' }}>Şifre</Label>
-							<Input secureTextEntry={true}/>
+							<Input onChangeText={ (text) => this.setState({ password: text }) }
+							       secureTextEntry={true}/>
 						</Item>
 
 
@@ -87,13 +168,13 @@ export default class Login extends Component {
 						<Button
 							full
 							style={{ backgroundColor:'#50D688', borderRadius: 3, marginTop: 24 }}
-							onPress={() => {
-								this.props.navigator.push({
-									id: 'Discovery'
-								});
-							}}>
+							onPress={this.onLoginPressed.bind(this)}>
 							<Text style={{ color:'white', fontWeight: '600', fontSize: 15, }}>Giriş Yap</Text>
 					 	</Button>
+
+						<Text>
+							{this.state.error}
+						</Text>
 
 					</Form>
 
