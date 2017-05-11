@@ -86,7 +86,7 @@ export default class discovery extends Component{
 
 	getTheData(callback){
 		if (this.state.isLoading) { return }
-		fetch("http://booksaying.com/api/ali/saying/?page="+this.currentPage)
+		fetch("http://booksaying.com/api/deli/saying/?page="+this.currentPage)
 		.then(response => response.json())
 		.then(json => callback(json))
 		.catch(error => console.log(error));

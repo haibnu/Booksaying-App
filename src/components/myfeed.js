@@ -122,7 +122,7 @@ export default class MyFeed extends Component{
 					<Header noShadow style={{ backgroundColor:'white', borderBottomColor:'transparent' }}>
 						<StatusBar backgroundColor='#BFBFBF' />
 						<Body>
-							<Title style={{ fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>SÖZLERİM</Title>
+							<Title style={{ alignSelf:'center', fontSize:12, fontWeight:'bold', color:'#4A4A4A' }}>SÖZLERİM</Title>
 						</Body>
 					</Header>
 				</View>
